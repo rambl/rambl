@@ -1,0 +1,15 @@
+{
+  "name": "Handle",
+  "version": "0.0.1",
+  "description": "An online community for improving technical interview skills.",
+
+  "dependencies": {
+    "easyrtc": "~1.0.11",
+    "express": "~4.5.1",
+    "socket.io": "0.9.x"
+  },
+
+  "devDependencies": {
+    "gulp": "~3.8.5"
+  }
+}  
