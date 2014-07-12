@@ -3,6 +3,6 @@
   "version": "0.0.1",
   "dependencies": {
     "angular": "~1.2.19",
-    "angular-ui-router": "~0.2.10"
+    "angular-route": "~1.2.20"
   }
 }
