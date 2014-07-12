@@ -1,11 +1,20 @@
-angular.module('handle', ['ui.router'])
+var handleApp = angular.module('handleApp', ['ngRoute']);
 
-.config(['$stateProvider', '$urlRouterProvider', function () {
-  $urlRouterProvider.otherwise('/home');
+//.config(['$stateProvider', '$urlRouterProvider', function () {
+//handleApp.config(function($stateProvider, $urlRouterProvider) {
+handleApp.config(function($routeProvider) {
+  //$urlRouterProvider.otherwise('home');
 
-  $stateProvider.state('home', {
-    url: '/home',
-    templateUrl: 'app/home/home.html'
-  });
-}]).run();
+  $routeProvider
+    .when('/home', {
+      templateUrl: 'app/home/home.html',
+      controller: 'homeController'
+    })
+    .otherwise({
+      redirectTo: '/home'
+    });
 
+}).run();
+
+handleApp.controller('handleController', function($scope) {
+});
