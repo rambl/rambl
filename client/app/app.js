@@ -1,8 +1,8 @@
-var handleApp = angular.module('handleApp', ['ngRoute']);
+angular.module('handleApp', ['ngRoute'])
 
 //.config(['$stateProvider', '$urlRouterProvider', function () {
 //handleApp.config(function($stateProvider, $urlRouterProvider) {
-handleApp.config(function($routeProvider) {
+.config(function($routeProvider) {
   //$urlRouterProvider.otherwise('home');
 
   $routeProvider
@@ -16,5 +16,3 @@ handleApp.config(function($routeProvider) {
 
 }).run();
 
-handleApp.controller('handleController', function($scope) {
-});
