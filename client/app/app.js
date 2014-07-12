@@ -1,4 +1,5 @@
-angular.module('handleApp', ['ngRoute'])
+angular.module('handleApp', ['ngRoute', 'handleApp.home',
+  'handleApp.lobby', 'handleApp.signup', 'handleApp.room'])
 
 //.config(['$stateProvider', '$urlRouterProvider', function () {
 //handleApp.config(function($stateProvider, $urlRouterProvider) {
@@ -6,12 +7,24 @@ angular.module('handleApp', ['ngRoute'])
   //$urlRouterProvider.otherwise('home');
 
   $routeProvider
-    .when('/home', {
+    .when('/', {
       templateUrl: 'app/home/home.html',
       controller: 'homeController'
     })
+    .when('/lobby', {
+      templateUrl: 'app/lobby/lobby.html',
+      controller: 'lobbyController'
+    })
+    .when('/signup', {
+      templateUrl: 'app/signup/signup.html',
+      controller: 'signupController'
+    })
+    .when('/room', {
+      templateUrl: 'app/room/room.html',
+      controller: 'roomController'
+    })
     .otherwise({
-      redirectTo: '/home'
+      redirectTo: '/'
     });
 
 }).run();
