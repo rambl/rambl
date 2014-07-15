@@ -1,10 +1,11 @@
 angular.module('handleApp', 
   ['ngRoute', 
    'handleApp.home',
-   'handleApp.lobby', 
-   'handleApp.signup',
-   'handleApp.auth',
    'handleApp.authServices', 
+   'handleApp.auth',
+   'handleApp.signup',
+   'handleApp.lobbyServices',
+   'handleApp.lobby', 
    'handleApp.roomServices', 
    'handleApp.room'])
 
