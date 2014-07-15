@@ -1,26 +1,26 @@
 angular.module('handleApp.lobby', [])
 
-.controller('lobbyController', function ($scope, $location, EasyRTCServer) {
+.controller('lobbyController', function ($scope, $location, EasyRTC) {
   $scope.data = {}
   
-  $scope.joinExistingRoom = EasyRTCServer.joinExistingRoom;
+  $scope.setCurrentRoom = EasyRTC.setCurrentRoom;
 
-  // creates a new room, joins it and navigates to the room route
-  $scope.createNewRoom = function (roomName, path) {
-  	EasyRTCServer.createNewRoom(roomName);
+  // sets currentRoom thien navigates to the room route
+  $scope.setCurrentRoomAndNavigate = function (roomName, path) {
+    EasyRTC.setCurrentRoom(roomName); 
     $location.path(path); 
   };
 
   // connect to server then get rooms with asynchronous callback and apply them to scope
-  EasyRTCServer.connect(function () {
-	  EasyRTCServer.getRooms(function (rooms) {
+  EasyRTC.connect(function () {
+	  EasyRTC.getRooms(function (rooms) {
 	  	$scope.$apply(function () {
   	    $scope.data.rooms = rooms;
 	  	});
 	  });
   });
 
-	EasyRTCServer.getRooms(function (rooms) {
+	EasyRTC.getRooms(function (rooms) {
   	$scope.$apply(function () {
 	    $scope.data.rooms = rooms;
   	});

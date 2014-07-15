@@ -4,9 +4,8 @@ angular.module('handleApp',
    'handleApp.authServices', 
    'handleApp.auth',
    'handleApp.signup',
-   'handleApp.lobbyServices',
+   'handleApp.easyRTCServices',
    'handleApp.lobby', 
-   'handleApp.roomServices', 
    'handleApp.room'])
 
 //.config(['$stateProvider', '$urlRouterProvider', function () {
