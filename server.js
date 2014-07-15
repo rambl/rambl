@@ -15,4 +15,5 @@ var webServer = http.createServer(expressApp).listen(port);
 var socketServer = io.listen(webServer, {"log level":1});
 
 // Start EasyRTC server
+easyrtc.setOption('roomDefaultEnable', false);
 var rtc = easyrtc.listen(expressApp, socketServer);

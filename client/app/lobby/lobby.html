@@ -1,5 +1,16 @@
-<div ng-controller="lobbyController"><p>You're in the lobby.</p>
+<div>
+	<a href='#/home'>Home</a>
+  <p>You're in the lobby.</p>
+  <form>
+  	<input type="text" ng-model="newRoom" />
+  	<button ng-click="createNewRoom(newRoom, '/room')">Create Room</button>
+  </form> 
 
-<a href='#/room'>Go to a room</a>
-<a href='#/home'>Home</a>
+	<br />
+	<h3>current rooms:</h3>
+	  <ul>
+	  	<li ng-repeat="room in data.rooms">
+	  	  <a href="#/room" ng-click="joinExistingRoom(room)">{{room}}</a>
+	    </li>
+	  </ul>
 </div>
