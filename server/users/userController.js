@@ -4,11 +4,17 @@ var jwt  = require('jwt-simple');
 
 module.exports = {
   login: function(req, res, next) {
+
+    console.log('userController login');
+    
     var email = req.body.email;
     var password = req.body.password;
 
     // find user
+    var findUser = User.checkForUser(email);
 
+    console.log(findUser);
+    
 
   },
 

@@ -22,11 +22,71 @@ sequelize
   });
 
 // TODO: Need to apply non-null constraint to some of these tables
-var User = sequelize.define('User', {
-  email: Sequelize.STRING,
-  password: Sequelize.STRING,
-  name: Sequelize.STRING
-});
+var User = sequelize.define('User', 
+  {
+    email: Sequelize.STRING,
+    password: Sequelize.STRING,
+    name: Sequelize.STRING
+  },
+  {
+    instanceMethods: {
+      checkPassword: function(enteredPassword) {
+        console.log('checkPassword');
+        
+        var savedPassword = this.password;
+        bcrypt.compare(enteredPassword, savedPassword, function(err, isMatch) {
+          if (err) {
+            console.log('Error while checking passwords. ', err);
+            return false;
+          } else {
+            return isMatch;
+          }
+        });
+      }
+    },
+    classMethods: {
+      checkForUser: function(email) {
+        var exists = 
+          User
+          .find({where: {email: email}})
+          .complete(function(err, user) {
+            if (!!err) {
+              console.log('Error while searching for user ', err);
+            } else if (!user) {
+              console.log('No user found for email ', email);
+            } else {
+              console.log('User found for email ', email);
+              return true;
+            }
+            return false;
+          });
+
+        // Probably not correct way to return the found user.
+        return exists;
+      },
+
+      createUser: function(email, name, password) {
+        var user = User.build({
+          email: email,
+          name: name, 
+          password: password  // Need to encrypt it first
+        });
+
+        user
+          .save()
+          .complete(function(err) {
+            if (!!err) {
+              console.log('Unable to save user ', email);
+            } else {
+              console.log('Successfully saved user ', email);
+            }
+          });
+        // Do we return this?
+        return user;
+      }
+    }
+  }
+);
 
 sequelize
   .sync({force:true})
@@ -34,28 +94,6 @@ sequelize
     if (!!err) {
       console.log('An error occurred while creating the table: ', err);
     } else {
-      console.log('It worked!');
+      console.log('User table created.');
     }
   });
-
-
-
-// // This is not a secure way to connect to the database, 
-// // but we're just testing that we can connect at this point.
-// var connection = mysql.createConnection({
-//   host: 'us-cdbr-azure-west-a.cloudapp.net',
-//   user: 'bce62c7ed88dce',
-//   password: 'b3cc7632'  
-// });
-
-// connection.connect();
-
-// connection.query('select 1+1 as solution', function(err, rows, fields){
-//   if (err) throw err;
-
-//   console.log('the solution is: ', rows[0].solution);
-// })
-
-// connection.end();
-
-// connection.query('select * from users')
