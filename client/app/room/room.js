@@ -1,6 +1,6 @@
 angular.module('handleApp.room', [])
 
-.controller('roomController', function ($scope, EasyRTC) {
-  EasyRTC.init();
+.controller('roomController', function ($scope, EasyRTCChat) {
+  EasyRTCChat.init();
 });
 
