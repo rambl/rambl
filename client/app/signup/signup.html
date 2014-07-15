@@ -1,6 +1,19 @@
 <div ng-controller="signupController"><p>You're signing up.</p>
 
-<!-- Where to signed-up users go? -->
-<!-- Info gets sent to server and user is passed to lobby. -->
+  <div id='signup'>
+    <h2>Sign Up!</h2>
+    <form name='signupForm' ng-submit='signup();'>
+      Email Address: <input type='text' name='signupEmail' ng-model='user.email'>
+      <br/>
+      Your Name: <input type='text' name='signupName' ng-model='user.name'>
+      <br/>
+      Password: <input type='password' name='signupPassword' ng-model='user.password'>
+      <br/>
+<!--       Re-enter Password: <input type='password' name='signupPasswordAgain' ng-model='user.password'>
+      <br/>
+ -->      <button>Sign Up!</button>
+    </form>
+  </div>
+
 <a href='#/lobby'>Lobby</a>
 </div>
