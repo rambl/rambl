@@ -3,14 +3,14 @@
   <p>You're in the lobby.</p>
   <form>
   	<input type="text" ng-model="newRoom" />
-  	<button ng-click="createNewRoom(newRoom, '/room')">Create Room</button>
+  	<button ng-click="setCurrentRoomAndNavigate(newRoom, '/room')">Create Room</button>
   </form> 
 
 	<br />
 	<h3>current rooms:</h3>
 	  <ul>
 	  	<li ng-repeat="room in data.rooms">
-	  	  <a href="#/room" ng-click="joinExistingRoom(room)">{{room}}</a>
+	  	  <a href="#/room" ng-click="setCurrentRoom(room)">{{room}}</a>
 	    </li>
 	  </ul>
 </div>
