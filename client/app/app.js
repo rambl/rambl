@@ -1,5 +1,12 @@
-angular.module('handleApp', ['ngRoute', 'handleApp.home',
-  'handleApp.lobby', 'handleApp.signup', 'handleApp.roomServices', 'handleApp.room'])
+angular.module('handleApp', 
+  ['ngRoute', 
+   'handleApp.home',
+   'handleApp.lobby', 
+   'handleApp.signup',
+   'handleApp.auth',
+   'handleApp.authServices', 
+   'handleApp.roomServices', 
+   'handleApp.room'])
 
 //.config(['$stateProvider', '$urlRouterProvider', function () {
 //handleApp.config(function($stateProvider, $urlRouterProvider) {
