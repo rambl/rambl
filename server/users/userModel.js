@@ -22,7 +22,7 @@ sequelize
   });
 
 // TODO: Need to apply non-null constraint to some of these tables
-var User = sequelize.define('User', 
+  User = sequelize.define('User', 
   {
     email: Sequelize.STRING,
     password: Sequelize.STRING,
@@ -30,6 +30,40 @@ var User = sequelize.define('User',
   },
   {
     instanceMethods: {
+      // This might more properly be a class method, but not sure on the 
+      // difference between two method types
+      userAlreadyExists: function() {
+        User
+          .find({where: {email: this.email}})
+          .complete(function(err, user) {
+            if (!!err) {
+              console.log('Error while searching for user ', err);
+              // Returning true here b/c we don't know if user exists
+              return true;
+            } else if (!user) {
+              console.log('No user found for email ', this.email);
+              return false;
+            } else {
+              console.log('User found for email ', this.email);
+              return true;
+            }
+          });
+      },
+
+      saveUser: function() {
+        this.save()
+          .complete(function(err, user) {
+            if (!!err) {
+              console.log('Unable to save user ', user.email);
+              return false;
+            } else {
+              console.log('Successfully saved user ', user.email);
+              return true;
+            }
+          });
+      }
+    },
+    classMethods: {
       checkPassword: function(enteredPassword) {
         console.log('checkPassword');
         
@@ -42,35 +76,16 @@ var User = sequelize.define('User',
             return isMatch;
           }
         });
-      }
-    },
-    classMethods: {
-      checkForUser: function(email) {
-        var exists = 
-          User
-          .find({where: {email: email}})
-          .complete(function(err, user) {
-            if (!!err) {
-              console.log('Error while searching for user ', err);
-            } else if (!user) {
-              console.log('No user found for email ', email);
-            } else {
-              console.log('User found for email ', email);
-              return true;
-            }
-            return false;
-          });
-
-        // Probably not correct way to return the found user.
-        return exists;
       },
-
+      
       createUser: function(email, name, password) {
-        var user = User.build({
-          email: email,
-          name: name, 
-          password: password  // Need to encrypt it first
-        });
+          console.log('createUser called for ', email);
+
+          var user = User.build({
+            email: email,
+            name: name, 
+            password: password  // Need to encrypt it first
+          });
 
         user
           .save()
@@ -89,7 +104,7 @@ var User = sequelize.define('User',
 );
 
 sequelize
-  .sync({force:true})
+  .sync({force:false})
   .complete(function(err) {
     if (!!err) {
       console.log('An error occurred while creating the table: ', err);

@@ -1,4 +1,4 @@
-var User = require('./userModel.js');
+var userModel = require('./userModel.js');
 var q    = require('q');
 var jwt  = require('jwt-simple');
 
@@ -15,7 +15,7 @@ module.exports = {
 
     console.log(findUser);
     
-
+    console.log('login called for ', email);
   },
 
   signup: function(req, res, next) {
@@ -23,7 +23,20 @@ module.exports = {
     var password = req.body.password;
     var name = req.body.name;
 
-    
+    console.log('signup called for ', email);
+
+    // Check to see if user already exists
+    var user = User.build({
+        email: email,
+        password: password,
+        name: name
+      });
+
+    if (!user.userAlreadyExists()) {
+      // create the user! 
+      console.log('User does not exist, so save user.');
+      user.saveUser();
+    }
   },
 
   checkAuth: function(req, res, next) {
@@ -31,6 +44,8 @@ module.exports = {
     // Grab the token in the header, if any,
     // then decode the token, which end up being the user object
     // check to see if that user exists in the database
+    console.log('checkAuth called');
+
     var token = req.headers['x-access-token'];
     if (!token) {
       next(new Error('No token'));

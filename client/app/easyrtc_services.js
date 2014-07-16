@@ -118,6 +118,8 @@ angular.module('handleApp.easyRTCServices', [])
     
     // prevent connection attempt when going back to lobby from room 
     if (connectionEstablished === false) {
+
+      // User name gets set here for easy rtc
       $window.easyrtc.setUsername('fred');
       $window.easyrtc.connect('interview', connectSuccess, connectFailure);
     }

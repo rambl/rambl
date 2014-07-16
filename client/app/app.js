@@ -1,22 +1,20 @@
 angular.module('handleApp', 
   ['ngRoute', 
-   'handleApp.home',
    'handleApp.authServices', 
    'handleApp.auth',
-   'handleApp.signup',
    'handleApp.easyRTCServices',
    'handleApp.lobby', 
    'handleApp.room'])
 
 //.config(['$stateProvider', '$urlRouterProvider', function () {
 //handleApp.config(function($stateProvider, $urlRouterProvider) {
-.config(function($routeProvider) {
+.config(function($routeProvider, $httpProvider) {
   //$urlRouterProvider.otherwise('home');
 
   $routeProvider
     .when('/', {
       templateUrl: 'app/home/home.html',
-      controller: 'homeController'
+      controller: 'authController'
     })
     .when('/lobby', {
       templateUrl: 'app/lobby/lobby.html',
@@ -24,7 +22,7 @@ angular.module('handleApp',
     })
     .when('/signup', {
       templateUrl: 'app/signup/signup.html',
-      controller: 'signupController'
+      controller: 'authController'
     })
     .when('/room', {
       templateUrl: 'app/room/room.html',
@@ -34,5 +32,34 @@ angular.module('handleApp',
       redirectTo: '/'
     });
 
+    $httpProvider.interceptors.push('AttachTokens');
+})
+.factory('AttachTokens', function($window) {
+  var attach = {
+    request: function(object) {
+      var jwt = $window.localStorage.getItem('com.handle');
+      if (jwt) {
+        object.headers['x-access-token'] = jwt;
+      }
+      object.headers['Allow-Control-Allow-Origin'] = '*';
+      return object;
+    }
+  };
+  return attach;
+})
+.run(function($rootScope, $location, Auth) {
+  $rootScope.$on('$routeChangeStart', function(evt, next, current) {
+    if (next && 
+        next.$$route && 
+        next.$$route.controller && 
+        next.$$route.controller !== 'authController') {
+      Auth.isAuth()
+        .then(function() {
+          console.log('Good to go in!');
+        })
+        .catch(function() {
+          $location.path('/login');
+        });
+    }
+  });
 });
-
