@@ -12,9 +12,6 @@ module.exports = {
 
     // find user
     var findUser = User.checkForUser(email);
-
-    console.log(findUser);
-    
     console.log('login called for ', email);
   },
 
@@ -26,17 +23,31 @@ module.exports = {
     console.log('signup called for ', email);
 
     // Check to see if user already exists
-    var user = User.build({
+    var formUser = User.build({
         email: email,
         password: password,
         name: name
       });
 
-    if (!user.userAlreadyExists()) {
-      // create the user! 
-      console.log('User does not exist, so save user.');
-      user.saveUser();
-    }
+
+    User.find({where: {email: email}})
+      .complete(function(err, user){
+        console.log('complete function called');
+        if (user === null) {
+          formUser.save().complete(function(err) {
+            if (!!err) {
+              console.log('Error while saving. ', err);
+            } else {
+              console.log('User saved successfully.');
+              // TODO: Go to next step....
+            }
+          });          
+        } else {
+          // User already exists
+          // TODO: Create message for user.
+          console.log('User already exists.')
+        }
+      });
   },
 
   checkAuth: function(req, res, next) {

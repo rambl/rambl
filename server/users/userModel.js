@@ -30,38 +30,6 @@ sequelize
   },
   {
     instanceMethods: {
-      // This might more properly be a class method, but not sure on the 
-      // difference between two method types
-      userAlreadyExists: function() {
-        User
-          .find({where: {email: this.email}})
-          .complete(function(err, user) {
-            if (!!err) {
-              console.log('Error while searching for user ', err);
-              // Returning true here b/c we don't know if user exists
-              return true;
-            } else if (!user) {
-              console.log('No user found for email ', this.email);
-              return false;
-            } else {
-              console.log('User found for email ', this.email);
-              return true;
-            }
-          });
-      },
-
-      saveUser: function() {
-        this.save()
-          .complete(function(err, user) {
-            if (!!err) {
-              console.log('Unable to save user ', user.email);
-              return false;
-            } else {
-              console.log('Successfully saved user ', user.email);
-              return true;
-            }
-          });
-      }
     },
     classMethods: {
       checkPassword: function(enteredPassword) {
@@ -77,28 +45,6 @@ sequelize
           }
         });
       },
-      
-      createUser: function(email, name, password) {
-          console.log('createUser called for ', email);
-
-          var user = User.build({
-            email: email,
-            name: name, 
-            password: password  // Need to encrypt it first
-          });
-
-        user
-          .save()
-          .complete(function(err) {
-            if (!!err) {
-              console.log('Unable to save user ', email);
-            } else {
-              console.log('Successfully saved user ', email);
-            }
-          });
-        // Do we return this?
-        return user;
-      }
     }
   }
 );
