@@ -1,0 +1,16 @@
+<div>
+	<a href="#/home" ng-click="lobbyDisconnect()">Home</a>
+  <p>You're in the lobby.</p>
+  <form>
+  	<input type="text" ng-model="newRoom" />
+  	<button ng-click="setCurrentRoomAndNavigate(newRoom, '/room')">Create Room</button>
+  </form> 
+
+	<br />
+	<h3>current rooms:</h3>
+	  <ul>
+	  	<li ng-repeat="room in data.rooms">
+	  	  <a href="" ng-click="setCurrentRoomAndNavigate(room, '/room')">{{room}}</a>
+	    </li>
+	  </ul>
+</div>
