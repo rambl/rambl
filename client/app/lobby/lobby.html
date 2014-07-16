@@ -1,16 +1,51 @@
 <div>
-	<a href="#/home" ng-click="lobbyDisconnect()">Home</a>
-  <p>You're in the lobby.</p>
-  <form>
-  	<input type="text" ng-model="newRoom" />
-  	<button ng-click="setCurrentRoomAndNavigate(newRoom, '/room')">Create Room</button>
-  </form> 
-
-	<br />
-	<h3>current rooms:</h3>
-	  <ul>
-	  	<li ng-repeat="room in data.rooms">
-	  	  <a href="" ng-click="setCurrentRoomAndNavigate(room, '/room')">{{room}}</a>
-	    </li>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <ul class="nav navbar-nav">
+	    <li><a href="#/home" ng-click="lobbyDisconnect()">Rambl</a></li>
 	  </ul>
+	</nav> 
+  <div class="container">
+    <div class="row">
+		  <div class="page-header">
+		    <h1 class="text-center">Lobby</h1>
+		  </div>
+    	
+
+    </div>
+
+	  <div class="row"> 
+		  <div class="col-md-6">
+		  	  <input type="text" class="form-control" placeholder="Filter rooms" ng-model="roomFilter" />
+		  </div>
+
+		  <div class="col-md-6">
+		    <div class="input-group">
+		  	  <input type="text" class="form-control" placeholder="Create room" ng-model="newRoom" />
+		  	  <span class="input-group-btn">
+		  	    <button type="button" class="btn btn-primary" ng-click="setCurrentRoomAndNavigate(newRoom, '/room')">Submit</button>
+		      </span>
+		    </div>
+		  </div>
+
+	  </div>
+
+	  <br />
+    
+    <div class="row">
+      <div class="col-md-12">
+				<h3>Rooms:</h3>
+				  <ul class="list-group">
+				  	<li class="list-group-item" ng-repeat="room in data.rooms | filter:roomFilter">
+				  	  <a href="" ng-click="setCurrentRoomAndNavigate(room, '/room')">{{room}}</a>
+				    </li>
+				  </ul>
+			</div>
+    </div>
+
+
+	</div>
+  <div class="footer">
+    <div class="container">
+    </div>
+  </div>
 </div>
