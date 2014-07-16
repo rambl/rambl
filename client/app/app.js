@@ -3,7 +3,10 @@ angular.module('handleApp',
    'handleApp.authServices', 
    'handleApp.auth',
    'handleApp.easyRTCServices',
+   'handleApp.home',
+   'handleApp.lobbyServices',
    'handleApp.lobby', 
+   'handleApp.roomServices', 
    'handleApp.room'])
 
 //.config(['$stateProvider', '$urlRouterProvider', function () {

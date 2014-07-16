@@ -31,9 +31,6 @@ module.exports = {
           console.log('User does not exist.')
         }
     });
-
-
-    console.log('login called for ', email);
   },
 
   signup: function(req, res, next) {

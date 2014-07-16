@@ -35,6 +35,7 @@ angular.module('handleApp.authServices', [])
 
   var isAuth = function () {
     console.log('auth_services isAuth called');
+
     return $http({
       method: 'GET',
       url: '/api/users/signedin'
@@ -43,6 +44,7 @@ angular.module('handleApp.authServices', [])
 
   var signout = function () {
     console.log('auth_services signout called')
+
     $window.localStorage.removeItem('com.handle');
     $location.path('/login');
   };
