@@ -1,6 +1,8 @@
 var userModel = require('./userModel.js');
-var q    = require('q');
+var Q    = require('q');
 var jwt  = require('jwt-simple');
+
+var secret = 'secret!';
 
 module.exports = {
   login: function(req, res, next) {
@@ -10,8 +12,27 @@ module.exports = {
     var email = req.body.email;
     var password = req.body.password;
 
-    // find user
-    var findUser = User.checkForUser(email);
+    User.find({where: {email: email}})
+      .complete(function(err, user){
+        console.log('complete function called');
+        if (user !== null) {
+          // checkAuth. (will need to hash password)
+          if (user.password === password) {
+            // Success!
+            console.log('let this user in!');
+            var token = jwt.encode(user, secret);
+            res.json({token:token});
+          } else {
+            console.log('invalid password for user')
+          }
+        } else {
+          // User does not exist
+          // TODO: Create message for user.
+          console.log('User does not exist.')
+        }
+    });
+
+
     console.log('login called for ', email);
   },
 
@@ -47,7 +68,7 @@ module.exports = {
           // TODO: Create message for user.
           console.log('User already exists.')
         }
-      });
+    });
   },
 
   checkAuth: function(req, res, next) {
@@ -61,9 +82,9 @@ module.exports = {
     if (!token) {
       next(new Error('No token'));
     } else {
-      var user = jwt.decode(token, 'secret');
-      var findUser = Q.nbind(User.findOne, User);
-      findUser({username: user.username})
+      var user = jwt.decode(token, secret);
+      var findUser = Q.nbind(User.find, User);
+      findUser({email: user.email})
         .then(function (foundUser) {
           if (foundUser) {
             res.send(200);

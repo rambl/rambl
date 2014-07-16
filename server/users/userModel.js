@@ -3,7 +3,7 @@ var q         = require('q');
 var mysql     = require('mysql');
 var Sequelize = require('sequelize');
 
-var SALT_WORK_FACTOR = 10;
+//var SALT_WORK_FACTOR = 10;
 
 var sequelize = new Sequelize('handledb', 'bce62c7ed88dce', 'b3cc7632', {
   dialect: 'mysql',
