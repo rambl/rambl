@@ -1,6 +1,6 @@
 angular.module('handleApp.easyRTCServices', [])
 
-.factory('EasyRTC', function ($window) {
+.factory('EasyRTC', function ($window, $timeout) {
   // gets set after a room is clicked in the lobby, gets passed to 
   // joinRoom
   var currentRoom = null;
@@ -13,6 +13,7 @@ angular.module('handleApp.easyRTCServices', [])
     currentRoom = roomName;
   };
 
+  // attached to buttons by roomListener to call other users
   var performCall = function (easyrtcid) {
     easyrtc.call(
       easyrtcid,
@@ -23,35 +24,48 @@ angular.module('handleApp.easyRTCServices', [])
       }
     );
   };
-
+  
+  // gets called when another user joins or leaves, calls other user and creates identifying paragraph tag
   var roomListener = function (roomName, otherPeers) {
-    var partnerButtonContainer = $window.document.getElementById('partnerButtonContainer');
+    console.log('room listener entered');
     var partnerNameContainer = $window.document.getElementById('partnerNameContainer'); 
 
-    while (partnerButtonContainer.hasChildNodes()) {
-        partnerButtonContainer.removeChild(partnerButtonContainer.lastChild);
-    }
     while (partnerNameContainer.hasChildNodes()) {
         partnerNameContainer.removeChild(partnerNameContainer.lastChild);
     }
 
     for (var i in otherPeers) {
-      var button = $window.document.createElement('button');
-      button.onclick = function (easyrtcid) {
-        return function () {
-          performCall(easyrtcid);
-        }
-      }(i);
+    
+      if ($window.easyrtc.getConnectStatus(i) !== 'is connected') {
+        $timeout(function () {
+          if ($window.easyrtc.getConnectStatus(i) === 'not connected') {
+            performCall(i);
+          }
+        }, 3000);
+      }
         
       var partnerParagraph = $window.document.createElement('p');
       var partnerName = $window.document.createTextNode('Interview Partner: ' + otherPeers[i].username);
       partnerParagraph.appendChild(partnerName);
-
-      var label = $window.document.createTextNode('Click to connect to ' + otherPeers[i].username);
-      button.appendChild(label);
-      partnerButtonContainer.appendChild(button);
       partnerNameContainer.appendChild(partnerParagraph);
     }
+  };
+
+  // this seemingly redundant function in necessary because it's the only way to access
+  // otherPeers when initially joining an existing room
+  var initRoomListener = function (roomName, otherPeers) {
+    var partnerNameContainer = $window.document.getElementById('partnerNameContainer'); 
+
+    while (partnerNameContainer.hasChildNodes()) {
+        partnerNameContainer.removeChild(partnerNameContainer.lastChild);
+    }
+
+    for (var i in otherPeers) {
+      var partnerParagraph = $window.document.createElement('p');
+      var partnerName = $window.document.createTextNode('Interview Partner: ' + otherPeers[i].username);
+      partnerParagraph.appendChild(partnerName);
+      partnerNameContainer.appendChild(partnerParagraph);
+    }  
   };
 
 
@@ -61,18 +75,20 @@ angular.module('handleApp.easyRTCServices', [])
     var initMediaSourceSuccess = function () {
       var selfVideo = $window.document.getElementById('self');
       $window.easyrtc.setVideoObjectSrc(selfVideo, $window.easyrtc.getLocalStream()); 
+
+      // this is critical to the application's functioning, roomListener gets called when
+      // someone joins or exits, this function must only get called AFTER setVideoObjectSrc 
+      $window.easyrtc.setRoomOccupantListener(roomListener);
     };  
     var initMediaSourceFailure = function (err) {
       console.log(err);
     };
-    
+     
     // if there is a currentRoom, perform init logic, else do nothing
     if (currentRoom) {
+      $window.easyrtc.setRoomOccupantListener(initRoomListener);
       $window.easyrtc.joinRoom(currentRoom);
-      
-      // this is critical to the application's functioning, roomListener gets called when
-      // someone joins or exits 
-      $window.easyrtc.setRoomOccupantListener(roomListener);
+      $window.easyrtc.initMediaSource(initMediaSourceSuccess, initMediaSourceFailure);
 
       // callback ties video element to incoming remote stream 
       $window.easyrtc.setStreamAcceptor(function (callerEasyrtcid, stream) {
@@ -80,12 +96,11 @@ angular.module('handleApp.easyRTCServices', [])
         $window.easyrtc.setVideoObjectSrc(video, stream);
       });
 
-      // callback changes video element source to empty string when remote user disconnects
+      //callback changes video element source to empty string when remote user disconnects
       $window.easyrtc.setOnStreamClosed(function (callerEasyrtcid) {
         $window.easyrtc.setVideoObjectSrc($window.document.getElementById('other'), '');
       });
 
-      $window.easyrtc.initMediaSource(initMediaSourceSuccess, initMediaSourceFailure);
     }
   };
 
@@ -109,10 +124,22 @@ angular.module('handleApp.easyRTCServices', [])
   };
 
   // disconnects from easyrtc
-  var disconnect = function () {
+  var roomDisconnect = function () {
+    $window.easyrtc.setRoomOccupantListener(null);
     connectionEstablished = false;
     $window.easyrtc.leaveRoom(currentRoom);
     currentRoom = null;
+    $window.easyrtc.disconnect();
+  };
+
+  var leaveRoom = function () {
+    $window.easyrtc.setRoomOccupantListener(null);
+    $window.easyrtc.leaveRoom(currentRoom);
+    currentRoom = null;
+  };
+  
+  var lobbyDisconnect = function () {
+    connectionEstablished = false;
     $window.easyrtc.disconnect();
   };
 
@@ -129,15 +156,10 @@ angular.module('handleApp.easyRTCServices', [])
     }, function () {console.log('error getting rooms');});
   };
 
-  var leaveRoom = function () {
-    $window.easyrtc.leaveRoom(currentRoom);
-    haveCalledUser = false;
-    currentRoom = null;
-  };
-  
   return {
     interviewInit: interviewInit, 
-    disconnect: disconnect,
+    roomDisconnect: roomDisconnect,
+    lobbyDisconnect: lobbyDisconnect,
     connect: connect,
     getRooms: getRooms,
     leaveRoom: leaveRoom,

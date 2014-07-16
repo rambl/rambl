@@ -1,5 +1,5 @@
 <div>
-	<a href='#/home'>Home</a>
+	<a href="#/home" ng-click="lobbyDisconnect()">Home</a>
   <p>You're in the lobby.</p>
   <form>
   	<input type="text" ng-model="newRoom" />
@@ -10,7 +10,7 @@
 	<h3>current rooms:</h3>
 	  <ul>
 	  	<li ng-repeat="room in data.rooms">
-	  	  <a href="#/room" ng-click="setCurrentRoom(room)">{{room}}</a>
+	  	  <a href="" ng-click="setCurrentRoomAndNavigate(room, '/room')">{{room}}</a>
 	    </li>
 	  </ul>
 </div>
