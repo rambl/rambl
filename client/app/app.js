@@ -3,17 +3,10 @@ angular.module('handleApp',
    'handleApp.authServices', 
    'handleApp.auth',
    'handleApp.easyRTCServices',
-   'handleApp.home',
-   'handleApp.lobbyServices',
    'handleApp.lobby', 
-   'handleApp.roomServices', 
    'handleApp.room'])
 
-//.config(['$stateProvider', '$urlRouterProvider', function () {
-//handleApp.config(function($stateProvider, $urlRouterProvider) {
 .config(function($routeProvider, $httpProvider) {
-  //$urlRouterProvider.otherwise('home');
-
   $routeProvider
     .when('/', {
       templateUrl: 'app/home/home.html',
