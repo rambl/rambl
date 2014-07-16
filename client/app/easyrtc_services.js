@@ -14,32 +14,43 @@ angular.module('handleApp.easyRTCServices', [])
   };
 
   var performCall = function (easyrtcid) {
-        easyrtc.call(
-           easyrtcid,
-           function(easyrtcid) { console.log("completed call to " + easyrtcid);},
-           function(errorCode, errorText) { console.log("err:" + errorText);},
-           function(accepted, bywho) {
-              console.log((accepted?"accepted":"rejected")+ " by " + bywho);
-           }
-       );
+    easyrtc.call(
+      easyrtcid,
+      function(easyrtcid) {console.log("completed call to " + easyrtcid);},
+      function(errorCode, errorText) {console.log("err:" + errorText);},
+      function(accepted, bywho) {
+        console.log((accepted?"accepted":"rejected")+ " by " + bywho);
+      }
+    );
   };
 
   var roomListener = function (roomName, otherPeers) {
-    var otherClientDiv = document.getElementById('otherClients');
-        while (otherClientDiv.hasChildNodes()) {
-            otherClientDiv.removeChild(otherClientDiv.lastChild);
-        }
-        for(var i in otherPeers) {
-            var button = document.createElement('button');
-            button.onclick = function(easyrtcid) {
-                return function() {
-                    performCall(easyrtcid);
-                }
-            }(i);
+    var partnerButtonContainer = $window.document.getElementById('partnerButtonContainer');
+    var partnerNameContainer = $window.document.getElementById('partnerNameContainer'); 
 
-            label = document.createTextNode('Click to connect to ' + otherPeers[i].username);
-            button.appendChild(label);
-            otherClientDiv.appendChild(button);
+    while (partnerButtonContainer.hasChildNodes()) {
+        partnerButtonContainer.removeChild(partnerButtonContainer.lastChild);
+    }
+    while (partnerNameContainer.hasChildNodes()) {
+        partnerNameContainer.removeChild(partnerNameContainer.lastChild);
+    }
+
+    for (var i in otherPeers) {
+      var button = $window.document.createElement('button');
+      button.onclick = function (easyrtcid) {
+        return function () {
+          performCall(easyrtcid);
+        }
+      }(i);
+        
+      var partnerParagraph = $window.document.createElement('p');
+      var partnerName = $window.document.createTextNode('Interview Partner: ' + otherPeers[i].username);
+      partnerParagraph.appendChild(partnerName);
+
+      var label = $window.document.createTextNode('Click to connect to ' + otherPeers[i].username);
+      button.appendChild(label);
+      partnerButtonContainer.appendChild(button);
+      partnerNameContainer.appendChild(partnerParagraph);
     }
   };
 
