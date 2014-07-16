@@ -8,6 +8,8 @@ angular.module('handleApp.authServices', [])
   // after you login/signup open devtools, click resources,
   // then localStorage and you'll see your token from the server
   var login = function (user) {
+    console.log('auth_services login called');
+
     return $http({
       method: 'POST',
       url: '/api/users/login',
@@ -19,6 +21,8 @@ angular.module('handleApp.authServices', [])
   };
 
   var signup = function (user) {
+    console.log('auth_services signup called');
+
     return $http({
       method: 'POST',
       url: '/api/users/signup',
@@ -30,6 +34,8 @@ angular.module('handleApp.authServices', [])
   };
 
   var isAuth = function () {
+    console.log('auth_services isAuth called');
+
     return $http({
       method: 'GET',
       url: '/api/users/signedin'
@@ -37,6 +43,8 @@ angular.module('handleApp.authServices', [])
   };
 
   var signout = function () {
+    console.log('auth_services signout called')
+
     $window.localStorage.removeItem('com.handle');
     $location.path('/login');
   };

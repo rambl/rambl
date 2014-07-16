@@ -44,7 +44,7 @@ sequelize
             return isMatch;
           }
         });
-      },
+      }
     }
   }
 );

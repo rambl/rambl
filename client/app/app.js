@@ -6,11 +6,7 @@ angular.module('handleApp',
    'handleApp.lobby', 
    'handleApp.room'])
 
-//.config(['$stateProvider', '$urlRouterProvider', function () {
-//handleApp.config(function($stateProvider, $urlRouterProvider) {
 .config(function($routeProvider, $httpProvider) {
-  //$urlRouterProvider.otherwise('home');
-
   $routeProvider
     .when('/', {
       templateUrl: 'app/home/home.html',
