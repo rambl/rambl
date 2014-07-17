@@ -49,7 +49,7 @@ angular.module('handleApp.easyRTCServices', [])
       }
         
       var partnerParagraph = $window.document.createElement('p');
-      var partnerName = $window.document.createTextNode('Interview Partner: ' + otherPeers[i].username);
+      var partnerName = $window.document.createTextNode('Interview partner: ' + otherPeers[i].username);
       partnerParagraph.appendChild(partnerName);
       partnerNameContainer.appendChild(partnerParagraph);
     }
