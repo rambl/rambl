@@ -1,13 +1,26 @@
-  <div id='login'>
-    <h2>Login</h2>
-    <form name='loginForm' ng-submit='login();'>
-      Email Address: <input type='text' ng-model='user.email'>
-      <br/>
-      Password: <input type='password' ng-model='user.password'>
-      <br/>
-      <button>Login</button>
-    </form>
-    <a href='#/signup'>Signup</a>
-    <a href='#/lobby'>Lobby</a>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <ul class="nav navbar-nav">
+    <li><a class="navbar-brand" href="#/">Rambl</a></li>
+  </ul>
+</nav> 
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 logocontainer"><h1 class="logo text-center">Rambl</h1></div> 
   </div>
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div id='login' class="jumbotron">
+      <form name='loginForm' ng-submit='login();'>
+        <input placeholder="Email" required class="form-control" type='text' ng-model='user.email'>
+        <input placeholder="Password" required class="form-control" type='password' ng-model='user.password'>
+        <br />
+        <button class="btn btn-primary bt-lg">Login</button>
+      </form>
+      <br />
+      <a href='#/signup'>Signup</a>
+    </div>
+  </div>
+</div>
+
+
 

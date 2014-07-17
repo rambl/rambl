@@ -48,3 +48,12 @@ body {
   text-align: right;
   margin-right: 20px;
 }
+
+.logo {
+  color: #fff;
+  font-size: 4em;
+}
+
+.logocontainer {
+  margin-bottom: 40px;
+}
