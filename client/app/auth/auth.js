@@ -1,7 +1,15 @@
 angular.module('handleApp.auth', [])
 
-.controller('authController', function ($scope, $window, $location, Auth) {
+.controller('authController', function ($scope, $window, $location, Auth, EasyRTC) {
   $scope.user = {};
+
+  if (EasyRTC.getCurrentRoom() !== null) {
+    EasyRTC.leaveRoom();
+  }
+
+  if (EasyRTC.getConnectionStatus() === true) {
+    EasyRTC.disconnect();
+  }
 
   $scope.login = function () {
     Auth.login($scope.user)
