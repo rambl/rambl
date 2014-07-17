@@ -13,6 +13,10 @@ angular.module('handleApp.easyRTCServices', [])
     currentRoom = roomName;
   };
 
+  var getCurrentRoom = function () {
+    return currentRoom;
+  };
+
   // attached to buttons by roomListener to call other users
   var performCall = function (easyrtcid) {
     easyrtc.call(
@@ -165,6 +169,7 @@ angular.module('handleApp.easyRTCServices', [])
     connect: connect,
     getRooms: getRooms,
     leaveRoom: leaveRoom,
-    setCurrentRoom: setCurrentRoom
+    setCurrentRoom: setCurrentRoom,
+    getCurrentRoom: getCurrentRoom
   }; 
 });
