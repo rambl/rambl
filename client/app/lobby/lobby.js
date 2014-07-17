@@ -13,6 +13,11 @@ angular.module('handleApp.lobby', [])
     $location.path(path); 
   };
   
+  // check if there is a current room and if so leave it and hang up all calls
+  if (EasyRTC.getCurrentRoom()) {
+    EasyRTC.leaveRoom();
+  }
+  
   // connect to server then get rooms with asynchronous callback and apply them to scope
   EasyRTC.connect(function () {
 	  EasyRTC.getRooms(function (rooms) {
