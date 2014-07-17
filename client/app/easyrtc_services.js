@@ -17,7 +17,7 @@ angular.module('handleApp.easyRTCServices', [])
     return currentRoom;
   };
 
-  // attached to buttons by roomListener to call other users
+  // calls other users
   var performCall = function (easyrtcid) {
     easyrtc.call(
       easyrtcid,
@@ -39,7 +39,10 @@ angular.module('handleApp.easyRTCServices', [])
     }
 
     for (var i in otherPeers) {
-    
+      
+      // if the other peer is in not connected or processing status
+      // wait 3 seconds and if the peer is not connected, call them 
+      // this is meant to reduce the chances of peers calling each other at the same moment
       if ($window.easyrtc.getConnectStatus(i) !== 'is connected') {
         $timeout(function () {
           if ($window.easyrtc.getConnectStatus(i) === 'not connected') {
@@ -49,14 +52,16 @@ angular.module('handleApp.easyRTCServices', [])
       }
         
       var partnerParagraph = $window.document.createElement('p');
-      var partnerName = $window.document.createTextNode('Interview partner: ' + otherPeers[i].username);
+      var partnerName = $window.document.createTextNode('Interview Partner: ' + otherPeers[i].username);
       partnerParagraph.appendChild(partnerName);
       partnerNameContainer.appendChild(partnerParagraph);
     }
   };
 
   // this seemingly redundant function in necessary because it's the only way to access
-  // otherPeers when initially joining an existing room
+  // otherPeers when initially joining an existing room, thus it must be run every time
+  // a user joins a room since the room view is otherwise designed to handle chat initialization
+  // regardless of whether a user is initiating or joining an existing room
   var initRoomListener = function (roomName, otherPeers) {
     var partnerNameContainer = $window.document.getElementById('partnerNameContainer'); 
 
@@ -90,6 +95,12 @@ angular.module('handleApp.easyRTCServices', [])
      
     // if there is a currentRoom, perform init logic, else do nothing
     if (currentRoom) {
+      // the order of functions in this block is important, changing the order will result
+      // in bugs that are extremely difficult to diagnose 
+
+      // initRoomListener is used only to produce a paragraph element containing
+      // the other user's name, it is overwritten by roomListener after initMediaSourceSuccess
+      // is called
       $window.easyrtc.setRoomOccupantListener(initRoomListener);
       $window.easyrtc.joinRoom(currentRoom);
       $window.easyrtc.initMediaSource(initMediaSourceSuccess, initMediaSourceFailure);
@@ -140,6 +151,7 @@ angular.module('handleApp.easyRTCServices', [])
 
   var leaveRoom = function () {
     $window.easyrtc.setRoomOccupantListener(null);
+    $window.easyrtc.hangupAll();
     $window.easyrtc.leaveRoom(currentRoom);
     currentRoom = null;
   };
