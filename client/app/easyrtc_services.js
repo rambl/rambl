@@ -153,10 +153,16 @@ angular.module('handleApp.easyRTCServices', [])
     $window.easyrtc.setRoomOccupantListener(null);
     $window.easyrtc.hangupAll();
     $window.easyrtc.leaveRoom(currentRoom);
+    if ($window.easyrtc.getLocalStream()) {
+      $window.easyrtc.getLocalStream().stop();
+    }
     currentRoom = null;
   };
   
   var disconnect = function () {
+    if ($window.easyrtc.getLocalStream()) {
+      $window.easyrtc.getLocalStream().stop();
+    }
     connectionEstablished = false;
     $window.easyrtc.disconnect();
   };
