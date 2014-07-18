@@ -1,12 +1,13 @@
 angular.module('handleApp.authServices', [])
+
 .factory('Auth', function ($http, $location, $window) {
-  // Don't touch this Auth service!!!
   // it is responsible for authenticating our user
   // by exchanging the user's username and password
   // for a JWT from the server
   // that JWT is then stored in localStorage as 'com.shortly'
   // after you login/signup open devtools, click resources,
   // then localStorage and you'll see your token from the server
+
   var login = function (user) {
     console.log('auth_services login called');
 
@@ -16,7 +17,13 @@ angular.module('handleApp.authServices', [])
       data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      var userObj = {
+        token: resp.data.token,
+        userName: resp.data.userName,
+        email: resp.data.email
+      };
+
+      return userObj;
     });
   };
 
@@ -29,7 +36,13 @@ angular.module('handleApp.authServices', [])
       data: user
     })
     .then(function (resp) {
-      return resp.data.token;
+      var userObj = {
+        token: resp.data.token,
+        userName: resp.data.userName,
+        email: resp.data.email
+      };
+
+      return userObj;
     });
   };
 
@@ -42,17 +55,9 @@ angular.module('handleApp.authServices', [])
     });
   };
 
-  var signout = function () {
-    console.log('auth_services signout called')
-
-    $window.localStorage.removeItem('com.handle');
-    $location.path('/login');
-  };
-
   return {
     login: login,
     signup: signup,
-    isAuth: isAuth,
-    signout: signout
+    isAuth: isAuth
   };
 });

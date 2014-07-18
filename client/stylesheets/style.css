@@ -3,7 +3,6 @@ html {
   min-height: 100%;
 }
 body {
-  /* Margin bottom by footer height */
   margin-bottom: 60px;
   padding-top: 60px;
 }
@@ -11,7 +10,46 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
   height: 40px;
   background-color: #0d747c;
+}
+
+.logo {
+  height: 34px;
+}
+ 
+#self {
+  position: absolute;
+  left: 0;
+}
+
+#other {
+  display: block;
+  margin: 0 auto;
+}
+
+#partnerNameContainer {
+  width: 600px;
+  margin: 0 auto; 
+}
+
+#partnerNameContainer p {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.copyright {
+  margin-top: 10px;
+  text-align: right;
+  margin-right: 20px;
+}
+
+.logo {
+  color: #fff;
+  font-size: 4em;
+}
+
+.logocontainer {
+  margin-bottom: 40px;
 }

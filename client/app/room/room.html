@@ -1,10 +1,38 @@
-<div><p>You're in a room.</p>
+<div>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+	    <ul class="nav navbar-nav">
+		    <li><a class="navbar-brand" href="#/">Rambl</a></li>
+		    <li><a href="#/lobby">Lobby</a></li>
+        <li><a href="#/signout">Sign Out</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="top_username"><p class="navbar-text">Signed in as: {{userName}}</p></li>
+      </ul>
+    </div>
+	</nav> 
 
-  <video style="float:left" id="self" width="300" height="200"></video>
-  <video style="float:left" id="other" width="300" height="200"></video>
+	<div class="container">
 
-  <div id="partnerNameContainer"></div>
+	  <div class="row">
+		  <div class="page-header">
+		    <h1 class="text-center">Room: {{currentRoom}}</h1>
+		  </div>
+		</div>
+  
+    <div class="row"> 
+      <div class="col-md-12">
+		    <video id="self" width="150" height="100"></video>
+		    <video id="other" width="600" height="400"></video>
+        <div id="partnerNameContainer"></div>
+		  </div>
+    </div>
 
-	<a href='#/lobby' ng-click="leaveRoom()">Lobby</a>
-	<a href='#/home' ng-click="roomDisconnect()">Home</a>
+
+
+	</div>
+
+  <div class="footer">
+    <p class="copyright">&copy; 2014 Rambl</p>
+  </div>
 </div>

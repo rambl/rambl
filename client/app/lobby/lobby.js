@@ -1,17 +1,18 @@
 angular.module('handleApp.lobby', [])
 
 .controller('lobbyController', function ($scope, $location, EasyRTC, $interval) {
-  $scope.data = {}
- 	$scope.lobbyDisconnect = function () {
-    EasyRTC.lobbyDisconnect(); 
-    $interval.cancel(getRoomsRepeatedly);
- 	};
+  $scope.data = {};
+
   // sets currentRoom then navigates to the room route
   $scope.setCurrentRoomAndNavigate = function (roomName, path) {
-    $interval.cancel(getRoomsRepeatedly);
     EasyRTC.setCurrentRoom(roomName); 
     $location.path(path); 
   };
+  
+  // check if there is a current room and if so leave it and hang up all calls
+  if (EasyRTC.getCurrentRoom()) {
+    EasyRTC.leaveRoom();
+  }
   
   // connect to server then get rooms with asynchronous callback and apply them to scope
   EasyRTC.connect(function () {
@@ -31,11 +32,15 @@ angular.module('handleApp.lobby', [])
 
   // update room list every 2 seconds 
   var getRoomsRepeatedly = $interval(function () {
-		EasyRTC.getRooms(function (rooms) {
-	  	$scope.$apply(function () {
-		    $scope.data.rooms = rooms;
-	  	});
-	  });
+    if (EasyRTC.getConnectionStatus() === true && EasyRTC.getCurrentRoom() === null) {
+      EasyRTC.getRooms(function (rooms) {
+        $scope.$apply(function () {
+          $scope.data.rooms = rooms;
+        });
+      });
+    } else {
+      $interval.cancel(getRoomsRepeatedly);
+    }
   }, 2000);
 
 });

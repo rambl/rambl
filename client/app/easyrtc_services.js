@@ -1,6 +1,6 @@
 angular.module('handleApp.easyRTCServices', [])
 
-.factory('EasyRTC', function ($window, $timeout) {
+.factory('EasyRTC', function ($window, $timeout, $location) {
   // gets set after a room is clicked in the lobby, gets passed to 
   // joinRoom
   var currentRoom = null;
@@ -9,11 +9,19 @@ angular.module('handleApp.easyRTCServices', [])
   // after connection has been established. 
   var connectionEstablished = false;
 
+  var getConnectionStatus = function () {
+    return connectionEstablished;
+  };
+
   var setCurrentRoom = function (roomName) {
     currentRoom = roomName;
   };
 
-  // attached to buttons by roomListener to call other users
+  var getCurrentRoom = function () {
+    return currentRoom;
+  };
+
+  // calls other users
   var performCall = function (easyrtcid) {
     easyrtc.call(
       easyrtcid,
@@ -35,7 +43,10 @@ angular.module('handleApp.easyRTCServices', [])
     }
 
     for (var i in otherPeers) {
-    
+      
+      // if the other peer is in not connected or processing status
+      // wait 3 seconds and if the peer is not connected, call them 
+      // this is meant to reduce the chances of peers calling each other at the same moment
       if ($window.easyrtc.getConnectStatus(i) !== 'is connected') {
         $timeout(function () {
           if ($window.easyrtc.getConnectStatus(i) === 'not connected') {
@@ -51,8 +62,12 @@ angular.module('handleApp.easyRTCServices', [])
     }
   };
 
-  // this seemingly redundant function in necessary because it's the only way to access
-  // otherPeers when initially joining an existing room
+  // this seemingly redundant function is a necessary workaround because of how easyrtc works.
+  // when calling setRoomOccupantListener, the passed in callback will not be run if a user
+  // has already joined a room, but the listener must also be set after calling setVideoObjSrc
+  // or else the remote user will not get the local stream. It would seem to make sense to simply
+  // call joinRoom last and only set a listener once, but server-side errors result when calling joinRoom after
+  // all of the other setup
   var initRoomListener = function (roomName, otherPeers) {
     var partnerNameContainer = $window.document.getElementById('partnerNameContainer'); 
 
@@ -83,25 +98,46 @@ angular.module('handleApp.easyRTCServices', [])
     var initMediaSourceFailure = function (err) {
       console.log(err);
     };
-     
-    // if there is a currentRoom, perform init logic, else do nothing
+    
+    // ensure that user has a currentRoom and that the room doesn't exist or only has at most 1 other client 
+    // before joining, else return to lobby. rooms cannot be deleted so an existing room with 0 clients
+    // is always possible
     if (currentRoom) {
-      $window.easyrtc.setRoomOccupantListener(initRoomListener);
-      $window.easyrtc.joinRoom(currentRoom);
-      $window.easyrtc.initMediaSource(initMediaSourceSuccess, initMediaSourceFailure);
+      $window.easyrtc.getRoomList(function (roomList) {
+        if (roomList[currentRoom] === undefined || roomList[currentRoom].numberClients <= 1) {
 
-      // callback ties video element to incoming remote stream 
-      $window.easyrtc.setStreamAcceptor(function (callerEasyrtcid, stream) {
-        var video = $window.document.getElementById('other');
-        $window.easyrtc.setVideoObjectSrc(video, stream);
-      });
+          // the order of functions in this block is important, changing the order will result
+          // in bugs that are extremely difficult to diagnose 
 
-      //callback changes video element source to empty string when remote user disconnects
-      $window.easyrtc.setOnStreamClosed(function (callerEasyrtcid) {
-        $window.easyrtc.setVideoObjectSrc($window.document.getElementById('other'), '');
-      });
+          // initRoomListener is used only to produce a paragraph element containing
+          // the other user's name, it is overwritten by roomListener after initMediaSourceSuccess
+          // is called
+          $window.easyrtc.setRoomOccupantListener(initRoomListener);
+          $window.easyrtc.joinRoom(currentRoom);
+          $window.easyrtc.initMediaSource(initMediaSourceSuccess, initMediaSourceFailure);
 
+          // callback ties video element to incoming remote stream 
+          $window.easyrtc.setStreamAcceptor(function (callerEasyrtcid, stream) {
+            var video = $window.document.getElementById('other');
+            $window.easyrtc.setVideoObjectSrc(video, stream);
+          });
+
+          //callback changes video element source to empty string when remote user disconnects
+          $window.easyrtc.setOnStreamClosed(function (callerEasyrtcid) {
+            // check if element exists so there isn't an error calling leaveRoom in a different view
+            if ($window.document.getElementById('other')) {
+              $window.easyrtc.setVideoObjectSrc($window.document.getElementById('other'), '');
+            }
+          });
+        } else {
+          $location.path('/lobby');  
+        }
+      }); 
+    } else {
+      $location.path('/lobby'); 
     }
+     
+
   };
 
   // connects to easyrtc if the flag is set to false 
@@ -125,22 +161,20 @@ angular.module('handleApp.easyRTCServices', [])
     }
   };
 
-  // disconnects from easyrtc
-  var roomDisconnect = function () {
-    $window.easyrtc.setRoomOccupantListener(null);
-    connectionEstablished = false;
-    $window.easyrtc.leaveRoom(currentRoom);
-    currentRoom = null;
-    $window.easyrtc.disconnect();
-  };
-
   var leaveRoom = function () {
     $window.easyrtc.setRoomOccupantListener(null);
+    $window.easyrtc.hangupAll();
     $window.easyrtc.leaveRoom(currentRoom);
+    if ($window.easyrtc.getLocalStream()) {
+      $window.easyrtc.getLocalStream().stop();
+    }
     currentRoom = null;
   };
   
-  var lobbyDisconnect = function () {
+  var disconnect = function () {
+    if ($window.easyrtc.getLocalStream()) {
+      $window.easyrtc.getLocalStream().stop();
+    }
     connectionEstablished = false;
     $window.easyrtc.disconnect();
   };
@@ -160,11 +194,12 @@ angular.module('handleApp.easyRTCServices', [])
 
   return {
     interviewInit: interviewInit, 
-    roomDisconnect: roomDisconnect,
-    lobbyDisconnect: lobbyDisconnect,
+    disconnect: disconnect,
     connect: connect,
     getRooms: getRooms,
     leaveRoom: leaveRoom,
-    setCurrentRoom: setCurrentRoom
+    setCurrentRoom: setCurrentRoom,
+    getCurrentRoom: getCurrentRoom,
+    getConnectionStatus: getConnectionStatus
   }; 
 });
