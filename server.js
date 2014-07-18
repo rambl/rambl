@@ -20,6 +20,10 @@ var socketServer = io.listen(webServer, {"log level":1});
 
 // Start EasyRTC server
 easyrtc.setOption('roomDefaultEnable', false);
+var roomNameRegExp = /^([a-z0-9_.-]|\s){1,64}$/i; 
+easyrtc.setOption('roomNameRegExp', roomNameRegExp); 
+var usernameRegExp = /^(.|\s){1,64}$/i;
+easyrtc.setOption('usernameRegExp', usernameRegExp); 
 var rtc = easyrtc.listen(expressApp, socketServer);
 
 module.exports = expressApp;
