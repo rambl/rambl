@@ -1,6 +1,6 @@
 angular.module('handleApp.easyRTCServices', [])
 
-.factory('EasyRTC', function ($window, $timeout) {
+.factory('EasyRTC', function ($window, $timeout, $location) {
   // gets set after a room is clicked in the lobby, gets passed to 
   // joinRoom
   var currentRoom = null;
@@ -98,34 +98,46 @@ angular.module('handleApp.easyRTCServices', [])
     var initMediaSourceFailure = function (err) {
       console.log(err);
     };
-     
-    // if there is a currentRoom, perform init logic, else do nothing
+    
+    // ensure that user has a currentRoom and that the room doesn't exist or only has at most 1 other client 
+    // before joining, else return to lobby. rooms cannot be deleted so an existing room with 0 clients
+    // is always possible
     if (currentRoom) {
-      // the order of functions in this block is important, changing the order will result
-      // in bugs that are extremely difficult to diagnose 
+      $window.easyrtc.getRoomList(function (roomList) {
+        if (roomList[currentRoom] === undefined || roomList[currentRoom].numberClients <= 1) {
 
-      // initRoomListener is used only to produce a paragraph element containing
-      // the other user's name, it is overwritten by roomListener after initMediaSourceSuccess
-      // is called
-      $window.easyrtc.setRoomOccupantListener(initRoomListener);
-      $window.easyrtc.joinRoom(currentRoom);
-      $window.easyrtc.initMediaSource(initMediaSourceSuccess, initMediaSourceFailure);
+          // the order of functions in this block is important, changing the order will result
+          // in bugs that are extremely difficult to diagnose 
 
-      // callback ties video element to incoming remote stream 
-      $window.easyrtc.setStreamAcceptor(function (callerEasyrtcid, stream) {
-        var video = $window.document.getElementById('other');
-        $window.easyrtc.setVideoObjectSrc(video, stream);
-      });
+          // initRoomListener is used only to produce a paragraph element containing
+          // the other user's name, it is overwritten by roomListener after initMediaSourceSuccess
+          // is called
+          $window.easyrtc.setRoomOccupantListener(initRoomListener);
+          $window.easyrtc.joinRoom(currentRoom);
+          $window.easyrtc.initMediaSource(initMediaSourceSuccess, initMediaSourceFailure);
 
-      //callback changes video element source to empty string when remote user disconnects
-      $window.easyrtc.setOnStreamClosed(function (callerEasyrtcid) {
-        // check if element exists so there isn't an error calling leaveRoom in a different view
-        if ($window.document.getElementById('other')) {
-          $window.easyrtc.setVideoObjectSrc($window.document.getElementById('other'), '');
+          // callback ties video element to incoming remote stream 
+          $window.easyrtc.setStreamAcceptor(function (callerEasyrtcid, stream) {
+            var video = $window.document.getElementById('other');
+            $window.easyrtc.setVideoObjectSrc(video, stream);
+          });
+
+          //callback changes video element source to empty string when remote user disconnects
+          $window.easyrtc.setOnStreamClosed(function (callerEasyrtcid) {
+            // check if element exists so there isn't an error calling leaveRoom in a different view
+            if ($window.document.getElementById('other')) {
+              $window.easyrtc.setVideoObjectSrc($window.document.getElementById('other'), '');
+            }
+          });
+        } else {
+          $location.path('/lobby');  
         }
-      });
-
+      }); 
+    } else {
+      $location.path('/lobby'); 
     }
+     
+
   };
 
   // connects to easyrtc if the flag is set to false 
