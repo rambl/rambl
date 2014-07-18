@@ -55,6 +55,6 @@ sequelize
     if (!!err) {
       console.log('An error occurred while creating the table: ', err);
     } else {
-      console.log('User table created.');
+      console.log('User table created (if sync force=true)');
     }
   });
