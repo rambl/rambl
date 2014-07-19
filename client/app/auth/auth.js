@@ -13,7 +13,7 @@ angular.module('handleApp.auth', [])
   // administrative tasks of setting up the data that needs to be set
   // upon login.
   var processLogin = function(userObject) {
-    $rootScope.userName = userObject.userName;
+    $window.localStorage.setItem('ramblUsername', userObject.userName);
     $window.localStorage.setItem('com.handle', userObject.token);
     $location.path('/lobby');
   };
@@ -31,6 +31,7 @@ angular.module('handleApp.auth', [])
   $scope.signout = function () {
     console.log('signout called');
     $window.localStorage.removeItem('com.handle');
+    $window.localStorage.removeItem('ramblUsername');
     $rootScope.userName = null;
     $location.path('/home');
   };
