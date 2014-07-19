@@ -29,8 +29,7 @@ angular.module('handleApp.auth', [])
   };
 
   $scope.signout = function () {
-    console.log('signout is called')
-
+    console.log('signout called');
     $window.localStorage.removeItem('com.handle');
     $rootScope.userName = null;
     $location.path('/home');

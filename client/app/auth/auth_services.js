@@ -55,9 +55,14 @@ angular.module('handleApp.authServices', [])
     });
   };
 
+  var signout = function () {
+    console.log('auth_services signout is called');
+  };
+
   return {
     login: login,
     signup: signup,
-    isAuth: isAuth
+    isAuth: isAuth,
+    signout: signout
   };
 });
