@@ -46,7 +46,7 @@ angular.module('handleApp',
   return attach;
 })
 .run(function($rootScope, $location, $window, Auth) {
-  $rootScope.userName = $window.localStorage.getItem('ramblUsername');
+
   $rootScope.$on('$routeChangeStart', function(evt, next, current) {
     if (next && 
         next.$$route && 

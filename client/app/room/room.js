@@ -12,6 +12,7 @@ angular.module('handleApp.room', [])
     $scope.data.questions = $window._.shuffle($scope.data.questions); 
 	};
 	$scope.data = {};
+	$scope.userName = $window.localStorage.getItem('ramblUsername');
 	$scope.leaveRoom = EasyRTC.leaveRoom;
 	$scope.data.questions = InterviewQuestions.questions;
 	EasyRTC.interviewInit();

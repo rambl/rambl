@@ -1,13 +1,20 @@
 angular.module('handleApp.auth', [])
 
 .controller('authController', function ($scope, $window, $location, $rootScope, Auth, EasyRTC) {
-  if (EasyRTC.getCurrentRoom() !== null) {
-    EasyRTC.leaveRoom();
+  
+  // if user has userName and token, redirect to lobby, else check if they're coming from
+  // lobby/room having signed out and if so remove them from room and/or disconnect from easyrtc
+  if ($window.localStorage.getItem('ramblUsername') && $window.localStorage.getItem('com.handle')) {
+    $location.path('/lobby');
+  } else {
+    if (EasyRTC.getCurrentRoom() !== null) {
+      EasyRTC.leaveRoom();
+    }
+    if (EasyRTC.getConnectionStatus() === true) {
+      EasyRTC.disconnect();
+    }
   }
 
-  if (EasyRTC.getConnectionStatus() === true) {
-    EasyRTC.disconnect();
-  }
 
   // This function is shared by both login and signup and handles the 
   // administrative tasks of setting up the data that needs to be set
@@ -28,13 +35,7 @@ angular.module('handleApp.auth', [])
       });
   };
 
-  $scope.signout = function () {
-    console.log('signout called');
-    $window.localStorage.removeItem('com.handle');
-    $window.localStorage.removeItem('ramblUsername');
-    $rootScope.userName = null;
-    $location.path('/home');
-  };
+  $scope.signout = Auth.signout; 
 
   $scope.signup = function () {
     Auth.signup($scope.user)
