@@ -27,6 +27,12 @@ angular.module('handleApp.authServices', [])
     });
   };
 
+  var signout = function () {
+    $window.localStorage.removeItem('com.handle');
+    $window.localStorage.removeItem('ramblUsername');
+    $location.path('/');
+  };
+
   var signup = function (user) {
     console.log('auth_services signup called');
 
@@ -55,9 +61,11 @@ angular.module('handleApp.authServices', [])
     });
   };
 
+
   return {
     login: login,
     signup: signup,
+    signout: signout,
     isAuth: isAuth
   };
 });

@@ -1,6 +1,6 @@
 angular.module('handleApp.easyRTCServices', [])
 
-.factory('EasyRTC', function ($window, $timeout, $location) {
+.factory('EasyRTC', function ($window, $timeout, $location, $rootScope) {
   // gets set after a room is clicked in the lobby, gets passed to joinRoom
   var currentRoom = null;
 
@@ -155,7 +155,7 @@ angular.module('handleApp.easyRTCServices', [])
     if (connectionEstablished === false) {
 
       // User name gets set here for easy rtc
-      $window.easyrtc.setUsername('fred');
+      $window.easyrtc.setUsername($rootScope.userName);
       $window.easyrtc.connect('interview', connectSuccess, connectFailure);
     }
   };

@@ -29,6 +29,7 @@ angular.module('handleApp',
       redirectTo: '/'
     });
 
+
     $httpProvider.interceptors.push('AttachTokens');
 })
 .factory('AttachTokens', function($window) {
@@ -44,7 +45,8 @@ angular.module('handleApp',
   };
   return attach;
 })
-.run(function($rootScope, $location, Auth) {
+.run(function($rootScope, $location, $window, Auth) {
+
   $rootScope.$on('$routeChangeStart', function(evt, next, current) {
     if (next && 
         next.$$route && 
