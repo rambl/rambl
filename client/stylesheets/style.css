@@ -1,11 +1,14 @@
+/* styles applied to all views */
 html {
   position: relative;
   min-height: 100%;
 }
+
 body {
   margin-bottom: 60px;
   padding-top: 60px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -14,10 +17,40 @@ body {
   background-color: #0d747c;
 }
 
-.logo {
-  height: 34px;
+.copyright {
+  margin-top: 10px;
+  margin-right: 20px;
+  text-align: right;
 }
- 
+
+/* home view styles */
+.logo {
+  color: #fff;
+  font-size: 4em;
+}
+
+.logo_container {
+  margin-top: 11px;
+  margin-bottom: 30px;
+}
+
+.signin {
+  width: 440px !important;
+  display: block;
+  margin: 0 auto;
+}
+
+/* signup view styles */
+.signup {
+  width: 440px !important;
+  display: block;
+  margin: 0 auto;
+}
+
+/* lobby view styles */
+
+
+/* room view styles */
 #self {
   position: absolute;
   left: 0;
@@ -39,17 +72,35 @@ body {
   font-size: 1.5em;
 }
 
-.copyright {
-  margin-top: 10px;
-  text-align: right;
-  margin-right: 20px;
+.main_room_container {
+  width: 970px !important;
 }
 
-.logo {
-  color: #fff;
-  font-size: 4em;
+.questions_container {
+  position: absolute;
+  right: 5px;
+  height: 500px;
+  width: 150px;
+  overflow: auto;
 }
 
-.logocontainer {
-  margin-bottom: 40px;
+.questions {
+  position: absolute;
+  height: 365px;
+  width: 150px;
+  overflow: auto;
 }
+
+.questions_button {
+  width: 150px;
+}
+
+.hide_questions_button {
+  width: 73px;
+}
+
+
+
+
+
+
