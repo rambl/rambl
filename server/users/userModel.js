@@ -82,7 +82,7 @@ sequelize
 // })
 
 sequelize
-  .sync({force:true})
+  .sync({force:false})
   .complete(function(err) {
     if (!!err) {
       console.log('An error occurred while creating the table: ', err);
