@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "An online community for improving technical interview skills.",
   "dependencies": {
-    "bcrypt": "^0.7.8",
+    "bcryptjs": "^2.0.1",
     "body-parser": "^1.4.3",
     "easyrtc": "~1.0.11",
     "express": "~4.5.1",
