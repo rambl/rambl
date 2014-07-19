@@ -73,13 +73,21 @@ module.exports = {
 
     var token = req.headers['x-access-token'];
     if (!token) {
+
+      console.log('checkAuth no token found! Calling next.');
+
       next(new Error('No token'));
     } else {
+
+      console.log('checkAuth for token ', token);
+
       var user = jwt.decode(token, secret);
 
       //console.log('Decoded user ', user);
 
       var findUser = Q.nbind(User.find, User);
+      console.log('about to call findUser for ', user.email);
+
       findUser({email: user.email})
         .then(function (foundUser) {
           if (foundUser) {
