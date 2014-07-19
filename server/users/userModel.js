@@ -1,4 +1,4 @@
-var bcrypt    = require('bcrypt');
+var bcrypt    = require('bcryptjs');
 var q         = require('q');
 var mysql     = require('mysql');
 var Sequelize = require('sequelize');
@@ -22,17 +22,36 @@ sequelize
     }
   });
 
-// TODO: Need to apply non-null constraint to some of these tables
+
+  // See http://sequelizejs.com/docs/1.7.8/models#definition for details about definitions below.
   User = sequelize.define('User', 
   {
-    email: Sequelize.STRING,
-    password: Sequelize.STRING,
-    name: Sequelize.STRING
+    email: { 
+      type: Sequelize.STRING(128), 
+      allowNull: false, 
+      unique: true,
+      validate: {
+        isEmail: true
+      }},
+    password: { 
+      type: Sequelize.STRING(128), 
+      allowNull: false,
+      // set: function(value) {
+      //   // Salt!
+      //   // Encrypt!
+      // } 
+    },
+    name: { 
+      type: Sequelize.STRING(64), 
+      allowNull: false 
+    }
   },
   {
     instanceMethods: {
+      // No instance methods defined yet.
     },
     classMethods: {
+      // Validate the enteredPassword against this User instance's persisted password.
       checkPassword: function(enteredPassword) {
         console.log('checkPassword');
         
@@ -49,6 +68,18 @@ sequelize
     }
   }
 );
+
+// Room = sequelize.define('Room',
+// {
+//   name: { type: Sequelize.STRING(64), allowNull: false },
+//   created_by: {}
+// })
+
+// Interview = sequelize.define('Interview',
+// { 
+//   // room name
+
+// })
 
 sequelize
   .sync({force:false})
