@@ -155,7 +155,7 @@ angular.module('handleApp.easyRTCServices', [])
     if (connectionEstablished === false) {
 
       // User name gets set here for easy rtc
-      $window.easyrtc.setUsername($rootScope.userName);
+      $window.easyrtc.setUsername($window.localStorage.getItem('ramblUsername'));
       $window.easyrtc.connect('interview', connectSuccess, connectFailure);
     }
   };
