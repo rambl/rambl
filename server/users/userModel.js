@@ -5,6 +5,7 @@ var Sequelize = require('sequelize');
 
 var SALT_WORK_FACTOR = 10;
 
+// TODO: Move these values to environment variables.
 var sequelize = new Sequelize('handledb', 'bce62c7ed88dce', 'b3cc7632', {
   dialect: 'mysql',
   host:    'us-cdbr-azure-west-a.cloudapp.net',

@@ -1,6 +1,6 @@
 angular.module('handleApp.lobby', [])
 
-.controller('lobbyController', function ($scope, $location, EasyRTC, $interval) {
+.controller('lobbyController', function ($scope, $window, $location, $rootScope, EasyRTC, $interval) {
   $scope.data = {};
 
   // sets currentRoom then navigates to the room route
@@ -9,6 +9,13 @@ angular.module('handleApp.lobby', [])
     $location.path(path); 
   };
   
+  $scope.signout = function () {
+    $window.localStorage.removeItem('com.handle');
+    $rootScope.userName = null;
+    $location.path('/home');
+  };
+
+
   // check if there is a current room and if so leave it and hang up all calls
   if (EasyRTC.getCurrentRoom()) {
     EasyRTC.leaveRoom();
