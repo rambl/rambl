@@ -1,11 +1,7 @@
 angular.module('handleApp.room', [])
 
-.controller('roomController', function ($scope, $window, $location, $rootScope, EasyRTC, InterviewQuestions) {
-  $scope.signout = function () {
-    $window.localStorage.removeItem('com.handle');
-    $rootScope.userName = null;
-    $location.path('/home');
-  };
+.controller('roomController', function ($scope, $window, $location, EasyRTC, InterviewQuestions, Auth) {
+  $scope.signout = Auth.signout;
   $scope.currentRoom = EasyRTC.getCurrentRoom();
 	$scope.showQuestions = false;
 	$scope.shuffleQuestions = function () {
