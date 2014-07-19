@@ -1,7 +1,7 @@
 angular.module('handleApp.lobby', [])
 
 .controller('lobbyController', function ($scope, $location, EasyRTC, $interval) {
-  $scope.data = {}
+  $scope.data = {};
 
   // sets currentRoom then navigates to the room route
   $scope.setCurrentRoomAndNavigate = function (roomName, path) {
