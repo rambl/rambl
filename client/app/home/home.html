@@ -13,8 +13,8 @@
   <div class="signin">
     <div id='login' class="jumbotron">
       <form name='loginForm' ng-submit='login();'>
-        <input placeholder="Email" required class="form-control" type='text' ng-model='user.email'>
-        <input placeholder="Password" required class="form-control" type='password' ng-model='user.password'>
+        <input placeholder="Email" required class="form-control" type='email' maxlength="32" ng-model='user.email'>
+        <input placeholder="Password" required class="form-control" type='password' maxlength="32" ng-model='user.password'>
         <br />
         <button class="btn btn-primary bt-lg">Login</button>
       </form>
