@@ -27,7 +27,7 @@ sequelize
   User = sequelize.define('User', 
   {
     email: { 
-      type: Sequelize.STRING(128), 
+      type: Sequelize.STRING(32), 
       allowNull: false, 
       unique: true,
       validate: {
@@ -42,7 +42,7 @@ sequelize
       // } 
     },
     name: { 
-      type: Sequelize.STRING(64), 
+      type: Sequelize.STRING(32), 
       allowNull: false 
     }
   },
