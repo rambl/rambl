@@ -1,5 +1,4 @@
 var userModel = require('./userModel.js');
-var Q    = require('q');
 var jwt  = require('jwt-simple');
 
 var secret = '8n24hEyJo7jYCEi';
@@ -78,27 +77,29 @@ module.exports = {
 
       next(new Error('No token'));
     } else {
-
-      console.log('checkAuth for token ', token);
-
+      // console.log('checkAuth token found: ', token);
       var user = jwt.decode(token, secret);
 
-      //console.log('Decoded user ', user);
-
-      var findUser = Q.nbind(User.find, User);
-      console.log('about to call findUser for ', user.email);
-
-      findUser({email: user.email})
-        .then(function (foundUser) {
-          if (foundUser) {
-            res.send(200);
-          } else {
-            res.send(401);
-          }
-        })
-        .fail(function (error) {
-          next(error);
-        });
+      // console.log('Decoded user from token: ', user);
+      if (user && user.email) {
+        User.find({where: {email: user.email}})
+          .complete(function(err, foundUser){
+            if (!!err) {
+              console.log('Error encountered while checking db: ', err);
+              res.send(500, err.message);
+            }
+            else if (user === null) {
+              console.log('No user found');
+              res.send(401);
+            } else  {
+              console.log('User found. User: ', foundUser.values);
+              res.send(200);
+            }
+          });
+      } else {
+        console.log('user or user email is blank. User: ', user);
+        res.send(401);
+      }
     }
   }
 }
