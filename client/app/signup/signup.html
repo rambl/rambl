@@ -11,14 +11,12 @@
 <div class="container">
   <div class="col-md-3"></div>
   <div class="col-md-6">
-    <div id="signup" class="signin jumbotron">
+    <div id="signup" class="signin jumbotron signin-div">
       <h2>Sign Up!</h2>
       <form name="signupForm" ng-submit="signup();">
-        Email Address: <input class="form-control" type="email" maxlength="32" ng-model="user.email">
-        <br/>
-        Your Name: <input class="form-control" type="text" maxlength="32" ng-model="user.name">
-        <br/>
-        Password: <input class="form-control" type="password" maxlength="32" ng-model="user.password">
+        <input placeholder='Your email' required class="form-control" type="email" maxlength="32" ng-model="user.email">
+        <input placeholder='Your display name' required class="form-control" type="text" maxlength="32" ng-model="user.name">
+        <input placeholder='Password' required class="form-control" type="password" maxlength="32" ng-model="user.password">
         <br/>
   <!--       Re-enter Password: <input type='password' name='signupPasswordAgain' ng-model='user.password'>
         <br/>

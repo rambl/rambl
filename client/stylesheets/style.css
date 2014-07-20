@@ -47,6 +47,10 @@ body {
   margin: 0 auto;
 }
 
+.signin-div input {
+  padding: 4px;
+  margin-top: 4px;
+}
 /* lobby view styles */
 
 
