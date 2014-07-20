@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "angular": "~1.2.19",
-    "angular-route": "~1.2.20"
+    "angular-route": "~1.2.20",
+    "underscore": "~1.6.0"
   }
 }

@@ -5,18 +5,20 @@
     </ul>
   </div>
 </nav> 
+
 <br />
+
 <div class="container">
   <div class="col-md-3"></div>
   <div class="col-md-6">
-    <div id='signup' class="jumbotron">
+    <div id="signup" class="signin jumbotron">
       <h2>Sign Up!</h2>
-      <form name='signupForm' ng-submit='signup();'>
-        Email Address: <input class="form-control" type='text' ng-model='user.email'>
+      <form name="signupForm" ng-submit="signup();">
+        Email Address: <input class="form-control" type="email" maxlength="32" ng-model="user.email">
         <br/>
-        Your Name: <input class="form-control" type='text' ng-model='user.name'>
+        Your Name: <input class="form-control" type="text" maxlength="32" ng-model="user.name">
         <br/>
-        Password: <input class="form-control" type='password' ng-model='user.password'>
+        Password: <input class="form-control" type="password" maxlength="32" ng-model="user.password">
         <br/>
   <!--       Re-enter Password: <input type='password' name='signupPasswordAgain' ng-model='user.password'>
         <br/>

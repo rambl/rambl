@@ -1,8 +1,7 @@
 angular.module('handleApp.easyRTCServices', [])
 
 .factory('EasyRTC', function ($window, $timeout, $location) {
-  // gets set after a room is clicked in the lobby, gets passed to 
-  // joinRoom
+  // gets set after a room is clicked in the lobby, gets passed to joinRoom
   var currentRoom = null;
 
   // gets set to true after connecting in lobby, prevents repeated attempts to connect to easyrtc 
@@ -21,7 +20,7 @@ angular.module('handleApp.easyRTCServices', [])
     return currentRoom;
   };
 
-  // calls other users
+  // calls other user
   var performCall = function (easyrtcid) {
     easyrtc.call(
       easyrtcid,
@@ -99,8 +98,8 @@ angular.module('handleApp.easyRTCServices', [])
       console.log(err);
     };
     
-    // ensure that user has a currentRoom and that the room doesn't exist or only has at most 1 other client 
-    // before joining, else return to lobby. rooms cannot be deleted so an existing room with 0 clients
+    // ensure that user has a currentRoom and that the room either doesn't exist or only has at most 1 other client 
+    // before joining, else return to lobby. rooms cannot be easily deleted so an existing room with 0 clients
     // is always possible
     if (currentRoom) {
       $window.easyrtc.getRoomList(function (roomList) {
@@ -160,7 +159,8 @@ angular.module('handleApp.easyRTCServices', [])
       $window.easyrtc.connect('interview', connectSuccess, connectFailure);
     }
   };
-
+  
+  // this function is called throughout the app if the user navigates elsewhere from a room
   var leaveRoom = function () {
     $window.easyrtc.setRoomOccupantListener(null);
     $window.easyrtc.hangupAll();
@@ -171,6 +171,8 @@ angular.module('handleApp.easyRTCServices', [])
     currentRoom = null;
   };
   
+  // this function is called throughout the app if the user navigates anywhere other than
+  // lobby from a room 
   var disconnect = function () {
     if ($window.easyrtc.getLocalStream()) {
       $window.easyrtc.getLocalStream().stop();

@@ -4,6 +4,7 @@ angular.module('handleApp',
    'handleApp.auth',
    'handleApp.easyRTCServices',
    'handleApp.lobby', 
+   'handleApp.interviewServices',
    'handleApp.room'])
 
 .config(function($routeProvider, $httpProvider) {

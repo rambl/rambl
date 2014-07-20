@@ -18,12 +18,18 @@ var webServer = http.createServer(expressApp).listen(port);
 // Start Socket.io so it attaches itself to Express server
 var socketServer = io.listen(webServer, {"log level":1});
 
-// Start EasyRTC server
+// below are modifications to easyrtc defaults
+
+// users are not automatically places into a default room
 easyrtc.setOption('roomDefaultEnable', false);
-var roomNameRegExp = /^([a-z0-9_.-]|\s){1,64}$/i; 
+// enable spaces in room names
+var roomNameRegExp = /^([a-z0-9_.-]|\s){1,45}$/i; 
 easyrtc.setOption('roomNameRegExp', roomNameRegExp); 
-var usernameRegExp = /^(.|\s){1,64}$/i;
+// enable spaces in usernames
+var usernameRegExp = /^(.|\s){1,32}$/i;
 easyrtc.setOption('usernameRegExp', usernameRegExp); 
+
+// Start EasyRTC server
 var rtc = easyrtc.listen(expressApp, socketServer);
 
 module.exports = expressApp;

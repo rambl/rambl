@@ -2,36 +2,33 @@
   <div class="container-fluid">
 	  <ul class="nav navbar-nav">
 	    <li><a class="navbar-brand" href="#/">Rambl</a></li>
-      <li><a ng-click="signout();" href="javascript:void(0);">Sign Out</a></li>
 	  </ul>
 	  <ul class="nav navbar-nav navbar-right">
 	    <li class="top_username"><p class="navbar-text">Signed in as: {{userName}}</p></li>
+      <li><a ng-click="signout();" href="javascript:void(0);">Sign Out</a></li>
     </ul>
   </div>
 </nav> 
+
 <div class="container">
   <div class="row">
 	  <div class="page-header">
 	    <h1 class="text-center">Lobby</h1>
 	  </div>
-  	
-
   </div>
 
   <div class="row"> 
 	  <div class="col-md-6">
 	  	  <input type="text" class="form-control" placeholder="Filter rooms" ng-model="roomFilter" />
 	  </div>
-
 	  <div class="col-md-6">
 	    <div class="input-group">
-	  	  <input type="text" class="form-control" placeholder="Create room" ng-model="newRoom" />
+	  	  <input type="text" class="form-control" maxlength="45" placeholder="Create room" ng-model="newRoom" />
 	  	  <span class="input-group-btn">
 	  	    <button type="button" class="btn btn-primary" ng-click="setCurrentRoomAndNavigate(newRoom, '/room')">Submit</button>
 	      </span>
 	    </div>
 	  </div>
-
   </div>
 
   <br />
@@ -46,9 +43,8 @@
 			  </ul>
 		</div>
   </div>
-
-
 </div>
+
 <div class="footer">
   <p class="copyright">&copy; 2014 Rambl</p>
 </div>
