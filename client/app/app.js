@@ -57,6 +57,8 @@ angular.module('handleApp',
           console.log('Good to go in!');
         })
         .catch(function() {
+          console.log('diverting to login');
+
           $location.path('/login');
         });
     }
