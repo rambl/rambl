@@ -1,7 +1,7 @@
 {
   "name": "Rambl",
   "version": "0.0.1",
-  "description": "An online community for improving technical interview skills.",
+  "description": "An online community for improving job interview skills.",
   "dependencies": {
     "bcryptjs": "^2.0.1",
     "body-parser": "^1.4.3",

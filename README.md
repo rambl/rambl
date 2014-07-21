@@ -1,3 +1,3 @@
-handle
+## Rambl
 ======
-An online community for improving technical interview skills.
+An online community for improving job interview skills.

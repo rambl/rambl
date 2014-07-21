@@ -35,7 +35,6 @@ angular.module('ramblApp.easyRTCServices', [])
     
     // gets called when another user joins or leaves, calls other user and creates identifying paragraph tag
     var roomListener = function (roomName, otherPeers) {
-      console.log('room listener entered');
       var partnerNameContainer = $window.document.getElementById('partnerNameContainer'); 
 
       while (partnerNameContainer.hasChildNodes()) {
