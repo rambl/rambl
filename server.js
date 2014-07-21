@@ -20,7 +20,7 @@ var socketServer = io.listen(webServer, {"log level":1});
 
 // below are modifications to easyrtc defaults
 
-// users are not automatically places into a default room
+// users are not automatically placed into a default room
 easyrtc.setOption('roomDefaultEnable', false);
 // enable spaces in room names
 var roomNameRegExp = /^([a-z0-9_.-]|\s){1,45}$/i; 
