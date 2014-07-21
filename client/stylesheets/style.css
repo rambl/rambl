@@ -50,6 +50,7 @@ body {
   width: 440px !important;
   display: block;
   margin: 0 auto;
+  padding-top: 20px;
 }
 
 .signup_div input {
