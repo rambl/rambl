@@ -19,7 +19,9 @@ angular.module('ramblApp.signup', [])
     $scope.signup = function () {
       Auth.signup($scope.user)
         .then(function (userObject) {
-          Auth.processLogin(userObject);
+          if (userObject.token !== undefined && userObject.userName !== undefined) {
+            Auth.processLogin(userObject);
+          }
         })
         .catch(function (error) {
           console.error(error);
