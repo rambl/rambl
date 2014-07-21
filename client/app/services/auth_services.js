@@ -28,7 +28,7 @@ angular.module('ramblApp.authServices', [])
     };
 
     var signout = function () {
-      $window.localStorage.removeItem('com.handle');
+      $window.localStorage.removeItem('ramblToken');
       $window.localStorage.removeItem('ramblUsername');
       $location.path('/');
     };
@@ -61,7 +61,7 @@ angular.module('ramblApp.authServices', [])
 
     var processLogin = function(userObject) {
       $window.localStorage.setItem('ramblUsername', userObject.userName);
-      $window.localStorage.setItem('com.handle', userObject.token);
+      $window.localStorage.setItem('ramblToken', userObject.token);
       $location.path('/lobby');
     };
 

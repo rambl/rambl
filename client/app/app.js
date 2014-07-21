@@ -42,7 +42,7 @@ angular.module('ramblApp',
   function ($window) {
     var attach = {
       request: function(object) {
-        var jwt = $window.localStorage.getItem('com.handle');
+        var jwt = $window.localStorage.getItem('ramblToken');
         if (jwt) {
           object.headers['x-access-token'] = jwt;
         }
