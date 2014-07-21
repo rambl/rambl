@@ -3,6 +3,7 @@ angular.module('handleApp',
    'handleApp.authServices', 
    'handleApp.auth',
    'handleApp.easyRTCServices',
+   'handleApp.about',
    'handleApp.lobby', 
    'handleApp.interviewServices',
    'handleApp.room'])
@@ -20,6 +21,10 @@ angular.module('handleApp',
     .when('/signup', {
       templateUrl: 'app/signup/signup.html',
       controller: 'authController'
+    })
+    .when('/about', {
+      templateUrl: 'app/about/about.html',
+      controller: 'aboutController'
     })
     .when('/room', {
       templateUrl: 'app/room/room.html',
@@ -51,7 +56,7 @@ angular.module('handleApp',
     if (next && 
         next.$$route && 
         next.$$route.controller && 
-        next.$$route.controller !== 'authController') {
+        (next.$$route.controller !== 'authController' && next.$$route.controller !== 'aboutController')) {
       Auth.isAuth()
         .then(function() {
           console.log('Good to go in!');
@@ -59,7 +64,7 @@ angular.module('handleApp',
         .catch(function() {
           console.log('diverting to login');
 
-          $location.path('/login');
+          $location.path('/');
         });
     }
   });
