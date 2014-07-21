@@ -34,6 +34,11 @@ body {
   margin-bottom: 30px;
 }
 
+.signin_div input {
+  padding: 4px;
+  margin-top: 4px;
+}
+
 .signin {
   width: 440px !important;
   display: block;
@@ -47,10 +52,22 @@ body {
   margin: 0 auto;
 }
 
-.signin-div input {
+.signup_div input {
   padding: 4px;
   margin-top: 4px;
 }
+
+/* about view styles */
+.about {
+  width: 440px !important;
+  display: block;
+  margin: 0 auto;
+}
+
+.about p {
+  font-size: 1.2em;
+}
+
 /* lobby view styles */
 
 
@@ -65,12 +82,12 @@ body {
   margin: 0 auto;
 }
 
-#partnerNameContainer {
+#partner_name_container {
   width: 600px;
   margin: 0 auto; 
 }
 
-#partnerNameContainer p {
+#partner_name_container p {
   margin-top: 10px;
   text-align: center;
   font-size: 1.5em;

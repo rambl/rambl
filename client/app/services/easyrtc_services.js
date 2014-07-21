@@ -35,7 +35,7 @@ angular.module('ramblApp.easyRTCServices', [])
     
     // gets called when another user joins or leaves, calls other user and creates identifying paragraph tag
     var roomListener = function (roomName, otherPeers) {
-      var partnerNameContainer = $window.document.getElementById('partnerNameContainer'); 
+      var partnerNameContainer = $window.document.getElementById('partner_name_container'); 
 
       while (partnerNameContainer.hasChildNodes()) {
           partnerNameContainer.removeChild(partnerNameContainer.lastChild);
@@ -68,7 +68,7 @@ angular.module('ramblApp.easyRTCServices', [])
     // call joinRoom last and only set a listener once, but server-side errors result when calling joinRoom after
     // all of the other setup
     var initRoomListener = function (roomName, otherPeers) {
-      var partnerNameContainer = $window.document.getElementById('partnerNameContainer'); 
+      var partnerNameContainer = $window.document.getElementById('partner_name_container'); 
 
       while (partnerNameContainer.hasChildNodes()) {
           partnerNameContainer.removeChild(partnerNameContainer.lastChild);

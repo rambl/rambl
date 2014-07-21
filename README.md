@@ -47,7 +47,7 @@ bower install
 
 ### Tasks
 
-See the project's backlong in asana.  [TODO]
+See the project's backlong in asana.
 
 ## Contributing
 
