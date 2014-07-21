@@ -1,4 +1,4 @@
-angular.module('handleApp.lobby', [])
+angular.module('ramblApp.lobby', [])
 
 .controller('lobbyController', ['$scope', '$window', '$location', '$interval', 'EasyRTC', 'Auth', 
   function ($scope, $window, $location, $interval, EasyRTC, Auth) {

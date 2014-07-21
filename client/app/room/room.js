@@ -1,4 +1,4 @@
-angular.module('handleApp.room', [])
+angular.module('ramblApp.room', [])
 
 .controller('roomController', ['$scope', '$window', '$location', 'EasyRTC', 'InterviewQuestions', 'Auth', 
   function ($scope, $window, $location, EasyRTC, InterviewQuestions, Auth) {

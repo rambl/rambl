@@ -1,4 +1,4 @@
-angular.module('handleApp.interviewServices', [])
+angular.module('ramblApp.interviewServices', [])
 
 .factory('InterviewQuestions', [
   function () {
