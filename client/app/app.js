@@ -46,7 +46,6 @@ angular.module('ramblApp',
         if (jwt) {
           object.headers['x-access-token'] = jwt;
         }
-        object.headers['Allow-Control-Allow-Origin'] = '*';
         return object;
       }
     };
