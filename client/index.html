@@ -4,22 +4,29 @@
   <link rel="stylesheet" href="stylesheets/amelia.css">
   <link rel="stylesheet" href="stylesheets/style.css">
   <script src="socket.io/socket.io.js"></script>
-  <script src="/easyrtc/easyrtc.js"></script>
-  <script src="lib/angular/angular.js"></script>  
-  <script src="lib/angular-route/angular-route.js"></script>
-  <script src="lib/underscore/underscore.js"></script>
+  <script src="easyrtc/easyrtc.js"></script>
+
   
 </head>
-  <body ng-app="handleApp">
+  <body ng-app="ramblApp">
     <div ng-view></div>
+    
+    <script src="built.min.js"></script>
+
+  <!-- development scripts
+    <script src="lib/angular/angular.js"></script>  
+    <script src="lib/angular-route/angular-route.js"></script>
+    <script src="lib/underscore/underscore.js"></script>
 
     <script src="app/app.js"></script>
-    <script src="app/auth/auth.js"></script>
-    <script src="app/auth/auth_services.js"></script>
+    <script src="app/services/auth_services.js"></script>
     <script src="app/services/easyrtc_services.js"></script>
     <script src="app/services/interview_services.js"></script>
+    <script src="app/home/home.js"></script>
+    <script src="app/signup/signup.js"></script>
     <script src="app/about/about.js"></script>
     <script src="app/lobby/lobby.js"></script>
     <script src="app/room/room.js"></script>
+  -->
   </body>
 </html>

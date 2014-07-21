@@ -1,4 +1,4 @@
-angular.module('handleApp.about', [])
+angular.module('ramblApp.about', [])
 
 .controller('aboutController', ['$scope', '$window', 'EasyRTC',
   function ($scope, $window, EasyRTC) {

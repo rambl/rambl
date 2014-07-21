@@ -1,4 +1,4 @@
-angular.module('handleApp.easyRTCServices', [])
+angular.module('ramblApp.easyRTCServices', [])
 
 .factory('EasyRTC', ['$window', '$timeout', '$location',
   function ($window, $timeout, $location) {
@@ -143,7 +143,7 @@ angular.module('handleApp.easyRTCServices', [])
     // connects to easyrtc if the flag is set to false 
     var connect = function (callback) {
       var connectSuccess = function (selfId) {
-        console.log('My easyrtcid is:', selfId);
+        
         // this callback gets the room list
         connectionEstablished = true;
         callback();
