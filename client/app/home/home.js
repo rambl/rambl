@@ -5,7 +5,7 @@ angular.module('ramblApp.home', [])
 
     // if user has userName and token, redirect to lobby, else check if they're coming from
     // lobby/room having signed out and if so remove them from room and/or disconnect from easyrtc
-    if ($window.localStorage.getItem('ramblUsername') && $window.localStorage.getItem('com.handle')) {
+    if ($window.localStorage.getItem('ramblUsername') && $window.localStorage.getItem('ramblToken')) {
       $location.path('/lobby');
     } else {
       if (EasyRTC.getCurrentRoom() !== null) {
