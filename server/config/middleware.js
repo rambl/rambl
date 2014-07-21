@@ -14,14 +14,12 @@ module.exports = function (app, express) {
   app.use('/api/users', userRouter); 
 
   // authentication middleware used to decode token and made available on the request
-  // app.use('/api/links', helpers.decode);
-  //app.use('/', linkRouter); // user link router for link request
+  app.use('/api/users', helpers.decode);
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
 
   // inject our routers into their perspective route files
   require('../users/userRoutes.js')(userRouter);
-  //require('../links/linkRoutes.js')(linkRouter);
 
   console.log('End of middleware');
 };

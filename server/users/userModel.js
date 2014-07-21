@@ -1,5 +1,4 @@
-var bcrypt    = require('bcryptjs');
-var q         = require('q');
+var bcrypt    = require('bcryptjs'); // Note that this is using bcryptjs rather than bcrypt
 var mysql     = require('mysql');
 var Sequelize = require('sequelize');
 
@@ -36,10 +35,19 @@ sequelize
     password: { 
       type: Sequelize.STRING(128), 
       allowNull: false,
-      // set: function(value) {
-      //   // Salt!
-      //   // Encrypt!
-      // } 
+      set: function(value) {
+        console.log('User password set called.');
+
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(value, salt);
+
+        this.setDataValue('password', hash);
+        this.setDataValue('salt', salt);
+      },
+    },
+    salt: {
+      type: Sequelize.STRING,
+      allowNull: true
     },
     name: { 
       type: Sequelize.STRING(32), 
@@ -48,23 +56,39 @@ sequelize
   },
   {
     instanceMethods: {
-      // No instance methods defined yet.
-    },
-    classMethods: {
+      // Instance methods are called against instances of a class, like this: currentUser.methodName().
+      // This 'this' value is for the instance of the model. In this case, it would be a user.
+      // The following would print 'David' as this.name if it was for a user named 'David'
+      testInstanceMethod: function(value) {
+        console.log('userModel testInstanceMethod called.\tvalue=' + value + 
+          '\tthis.name=' + this.name);
+        console.log('userModel testInstanceMethod called.\tvalue=' + value + 
+          '\tthis.getDataValue(\'name\')=' + this.getDataValue('name'));
+      },
+
       // Validate the enteredPassword against this User instance's persisted password.
       checkPassword: function(enteredPassword) {
         console.log('checkPassword');
         
         var savedPassword = this.password;
-        bcrypt.compare(enteredPassword, savedPassword, function(err, isMatch) {
-          if (err) {
-            console.log('Error while checking passwords. ', err);
-            return false;
-          } else {
-            return isMatch;
-          }
-        });
+        var isMatch = bcrypt.compareSync(enteredPassword, savedPassword);
+        console.log('bcrypt compare returning ', isMatch);
+        return isMatch;
+      },
+    },
+    classMethods: {
+      // Class methods can be called like this: User.methodName(). 
+      // The 'this' value for them is the 'User' model itself.
+      // For example, the following prints 'User' as this.name.
+      testClassMethod: function(value) {
+        console.log('testClassMethod called.\tvalue=' + value + 
+          '\tthis.name=' + this.name);
+      },
+
+      encryptPassword: function(password) {
+        // How do I encrypt
       }
+
     }
   }
 );

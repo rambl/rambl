@@ -12,12 +12,14 @@ module.exports = {
 
     User.find({where: {email: email}})
       .complete(function(err, user){
-        console.log('complete function called');
         if (user !== null) {
           // TODO -- Hash password (It's plaintext now, which is awful)
-          if (user.password === password) {
+          var isMatch = user.checkPassword(password);
+          console.log('isMatch=' + isMatch + ' for password ' + password);
+
+          if (isMatch === true) {
             // Success!
-            console.log('User passed authentication this user in!');
+            console.log('Login successful for this user.');
             var token = jwt.encode(user, secret);
 
             var userObj = {
@@ -25,15 +27,25 @@ module.exports = {
               userName: user.name,
               email: user.email
             };
+
             res.json(userObj);
           } else {
-            // TODO: Create message for user.
             console.log('Password authentication failed.');
+            var errorObj = {
+              type: 'error',
+              message: 'Password authentication failed.'
+            };
+            //res.json(errorObj);
+            res.send(401, 'Password authentication failed.');
           }
         } else {
           // User does not exist
-          // TODO: Create message for user.
           console.log('User does not exist.');
+          var errorObj = {
+            type: 'error',
+            message: 'User does not exist.'
+          };
+          res.json(errorObj);
         }
     });
   },
@@ -54,15 +66,24 @@ module.exports = {
           formUser.save().complete(function(err) {
             if (!!err) {
               console.log('Error while saving. ', err);
+              var errorObj = {
+                type: 'error',
+                message: 'Unable to create the account.'
+              };
+              res.json(errorObj);
             } else {
               console.log('User saved successfully.');
-              // TODO: Go to next step....
+              module.exports.login(req, res, next);
             }
           });          
         } else {
           // User already exists
-          // TODO: Create message for user.
-          console.log('User already exists.')
+          console.log('User already exists.');
+          var errorObj = {
+            type: 'error',
+            message: 'User already exists.'
+          };
+          res.json(errorObj);
         }
     });
   },
@@ -71,33 +92,37 @@ module.exports = {
     console.log('checkAuth called');
 
     var token = req.headers['x-access-token'];
-    if (!token) {
-
-      console.log('checkAuth no token found! Calling next.');
-
-      next(new Error('No token'));
+    if (!!token) {
+      console.log('401: No token found.');
+      //res.send(401);
     } else {
-      // console.log('checkAuth token found: ', token);
-      var user = jwt.decode(token, secret);
+      console.log('checkAuth token found: ', token);
+      var user = null;
+      try {
+        user = jwt.decode(token, secret);
+      } catch (exception) {
+        console.log('500: Unable to decode jwt token. ', exception);
+        res.send(500, 'Unable to decode token.');
+        return; // Seems necessary to avoid the rest of the method from being run.
+      }
 
       // console.log('Decoded user from token: ', user);
       if (user && user.email) {
         User.find({where: {email: user.email}})
           .complete(function(err, foundUser){
             if (!!err) {
-              console.log('Error encountered while checking db: ', err);
+              console.log('500: Error encountered while checking db: ', err);
               res.send(500, err.message);
-            }
-            else if (user === null) {
-              console.log('No user found');
+            } else if (user === null) {
+              console.log('401: No user found.');
               res.send(401);
             } else  {
-              console.log('User found. User: ', foundUser.values);
+              console.log('200: Success! User found.');
               res.send(200);
             }
           });
       } else {
-        console.log('user or user email is blank. User: ', user);
+        console.log('401: User or user.email is blank.');
         res.send(401);
       }
     }
