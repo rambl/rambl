@@ -1,6 +1,6 @@
 # Rambl
 
-An online community for improving job interview skills. Users can practice job interviews with one another using ramdomly presented common interview questions.
+An online community for improving job interview skills. Users can practice job interviews with one another using randomly presented common interview questions.
 
 Rambl uses the WebRTC API, which is currently implemented in Chrome, Firefox and Opera.
 
