@@ -45,6 +45,17 @@ npm install
 bower install
 ```
 
+
+### Launching The App Locally
+
+From within the project's root directory:
+```sh
+node server.js
+# or
+nodemon server.js
+```
+Open your browser at `localhost:8080`
+
 ### Tasks
 
 See the project's backlong in asana.
