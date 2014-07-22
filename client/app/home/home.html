@@ -17,6 +17,7 @@
   <div class="signin">
     <div id='login' class="jumbotron signin_div">
       <form name='loginForm' ng-submit='login();'>
+        <div class="alert alert-danger" ng-show="invalidAccountInfo">Invalid email/password.</div>
         <input placeholder="Email" required class="form-control" type='email' maxlength="32" ng-model='user.email'>
         <input placeholder="Password" required class="form-control" type='password' maxlength="32" ng-model='user.password'>
         <br />

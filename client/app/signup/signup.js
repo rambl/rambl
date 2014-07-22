@@ -2,6 +2,8 @@ angular.module('ramblApp.signup', [])
 
 .controller('signupController', ['$scope', '$window', '$location', 'Auth', 'EasyRTC',
   function ($scope, $window, $location, Auth, EasyRTC) {
+
+    $scope.accountAlreadyExists = false;
     
     // if user has userName and token, redirect to lobby, else check if they're coming from
     // lobby/room having signed out and if so remove them from room and/or disconnect from easyrtc
@@ -21,6 +23,8 @@ angular.module('ramblApp.signup', [])
         .then(function (userObject) {
           if (userObject.token !== undefined && userObject.userName !== undefined) {
             Auth.processLogin(userObject);
+          } else {
+            $scope.accountAlreadyExists = true;
           }
         })
         .catch(function (error) {
