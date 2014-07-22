@@ -56,9 +56,14 @@ nodemon server.js
 ```
 Open your browser at `localhost:8080`
 
+## To Make Changes
+Edit your files
+Run `gulp` from the terminal
+Refresh your browser
+
 ### Tasks
 
-See the project's backlong in asana.
+See the project's backlog in asana.
 
 ## Contributing
 
