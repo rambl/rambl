@@ -15,7 +15,7 @@
     <div id="signup" class="jumbotron signup_div">
       <h2>Sign Up!</h2>
       <form name="signupForm" ng-submit="signup();">
-      <div class="alert alert-danger" ng-show="accountAlreadyExists">Account already exists.</div>
+        <div class="alert alert-danger" ng-show="accountAlreadyExists">Account already exists.</div>
         <input placeholder='Your email' required class="form-control" type="email" maxlength="32" ng-model="user.email">
         <input placeholder='Your display name' required class="form-control" type="text" maxlength="32" ng-model="user.name">
         <input placeholder='Password' required class="form-control" type="password" maxlength="32" ng-model="user.password">
