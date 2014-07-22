@@ -38,6 +38,7 @@ angular.module('ramblApp',
 
       $httpProvider.interceptors.push('AttachTokens');
 }])
+
 .factory('AttachTokens', ['$window',
   function ($window) {
     var attach = {
@@ -51,6 +52,7 @@ angular.module('ramblApp',
     };
     return attach;
 }])
+
 .run(['$rootScope', '$location', '$window', 'Auth',
   function($rootScope, $location, $window, Auth) {
 

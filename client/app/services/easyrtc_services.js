@@ -142,9 +142,9 @@ angular.module('ramblApp.easyRTCServices', [])
     // connects to easyrtc if the flag is set to false 
     var connect = function (callback) {
       var connectSuccess = function (selfId) {
-        
-        // this callback gets the room list
         connectionEstablished = true;
+
+        // this callback gets the room list
         callback();
       };
       var connectFailure = function (err) {
@@ -154,7 +154,7 @@ angular.module('ramblApp.easyRTCServices', [])
       // prevent connection attempt when going back to lobby from room 
       if (connectionEstablished === false) {
 
-        // User name gets set here for easy rtc
+        // User name gets set here for easyrtc
         $window.easyrtc.setUsername($window.localStorage.getItem('ramblUsername'));
         $window.easyrtc.connect('interview', connectSuccess, connectFailure);
       }

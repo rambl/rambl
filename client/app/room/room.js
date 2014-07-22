@@ -2,7 +2,7 @@ angular.module('ramblApp.room', [])
 
 .controller('roomController', ['$scope', '$window', '$location', 'EasyRTC', 'InterviewQuestions', 'Auth', 
   function ($scope, $window, $location, EasyRTC, InterviewQuestions, Auth) {
-  	$scope.data = {};
+    $scope.data = {};
     $scope.data.currentRoom = EasyRTC.getCurrentRoom();
     $scope.data.userName = $window.localStorage.getItem('ramblUsername');
     $scope.data.questions = InterviewQuestions.questions;
@@ -15,6 +15,6 @@ angular.module('ramblApp.room', [])
     $scope.leaveRoom = EasyRTC.leaveRoom;
 
     // set up elements for local and remote streams, set up room occupant listener
-  	EasyRTC.interviewInit();
+    EasyRTC.interviewInit();
 }]);
 
