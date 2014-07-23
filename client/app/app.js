@@ -1,20 +1,25 @@
-angular.module('ramblApp', 
-  ['ngRoute', 
-   'ramblApp.authServices', 
+angular.module('ramblApp',
+  ['ngRoute',
+   'ramblApp.authServices',
    'ramblApp.easyRTCServices',
    'ramblApp.interviewServices',
    'ramblApp.home',
+   'ramblApp.login',
    'ramblApp.signup',
    'ramblApp.about',
-   'ramblApp.lobby', 
+   'ramblApp.lobby',
    'ramblApp.room'])
 
-.config(['$routeProvider', '$httpProvider', 
+.config(['$routeProvider', '$httpProvider',
   function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'app/home/home.html',
         controller: 'homeController'
+      })
+      .when('/login', {
+        templateUrl: 'app/login/login.html',
+        controller: 'loginController'
       })
       .when('/signup', {
         templateUrl: 'app/signup/signup.html',
@@ -57,17 +62,18 @@ angular.module('ramblApp',
   function($rootScope, $location, $window, Auth) {
 
     $rootScope.$on('$routeChangeStart', function(evt, next, current) {
-      if (next && 
-          next.$$route && 
-          next.$$route.controller && 
-          (next.$$route.controller !== 'homeController' && 
-            next.$$route.controller !== 'signupController' && 
+      if (next &&
+          next.$$route &&
+          next.$$route.controller &&
+          (next.$$route.controller !== 'homeController' &&
+            next.$$route.controller !== 'loginController' &&
+            next.$$route.controller !== 'signupController' &&
             next.$$route.controller !== 'aboutController')) {
         Auth.isAuth()
           .then(function() {
           })
           .catch(function() {
-            $location.path('/');
+            $location.path('/login');
           });
       }
     });

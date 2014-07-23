@@ -13,12 +13,13 @@ var paths = {
     'client/app/services/easyrtc_services.js',
     'client/app/services/interview_services.js',
     'client/app/home/home.js',
+    'client/app/login/login.js',
     'client/app/signup/signup.js',
     'client/app/about/about.js',
     'client/app/lobby/lobby.js',
     'client/app/room/room.js'
     ]
-}
+};
 
 gulp.task('default', function () {
   return gulp.src(paths.scripts)
