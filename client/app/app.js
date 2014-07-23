@@ -14,23 +14,23 @@ angular.module('ramblApp',
     $routeProvider
       .when('/', {
         templateUrl: 'app/home/home.html',
-        controller: 'homeController'
+        controller: 'HomeController'
       })
       .when('/signup', {
         templateUrl: 'app/signup/signup.html',
-        controller: 'signupController'
+        controller: 'SignupController'
       })
       .when('/about', {
         templateUrl: 'app/about/about.html',
-        controller: 'aboutController'
+        controller: 'AboutController'
       })
       .when('/lobby', {
         templateUrl: 'app/lobby/lobby.html',
-        controller: 'lobbyController'
+        controller: 'LobbyController'
       })
       .when('/room', {
         templateUrl: 'app/room/room.html',
-        controller: 'roomController'
+        controller: 'RoomController'
       })
       .otherwise({
         redirectTo: '/'

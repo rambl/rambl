@@ -1,6 +1,6 @@
 angular.module('ramblApp.home', [])
 
-.controller('homeController', ['$scope', '$window', '$location', 'Auth', 'EasyRTC',
+.controller('HomeController', ['$scope', '$window', '$location', 'Auth', 'EasyRTC',
   function ($scope, $window, $location, Auth, EasyRTC) {
 
     $scope.invalidAccountInfo = false;
@@ -19,6 +19,7 @@ angular.module('ramblApp.home', [])
     }
 
     $scope.login = function () {
+      console.log("scope login in homes.js is calling");    
       Auth.login($scope.user)
         .then(function (userObject) {
           if (userObject.token !== undefined && userObject.userName !== undefined) {

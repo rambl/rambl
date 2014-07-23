@@ -9,6 +9,8 @@ var middle  = require("./server/config/middleware.js");
 var port = process.env.PORT || 8080;
 // Setup and configure Express http server. Expect a subfolder called "static" to be the web root.
 var expressApp = express();
+
+/// __dirname is Users/xianhuifeng/repo/rambl
 expressApp.use(express.static(__dirname + "/client/"));
 middle(expressApp, express);
 

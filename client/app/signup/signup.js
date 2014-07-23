@@ -1,6 +1,6 @@
 angular.module('ramblApp.signup', [])
 
-.controller('signupController', ['$scope', '$window', '$location', 'Auth', 'EasyRTC',
+.controller('SignupController', ['$scope', '$window', '$location', 'Auth', 'EasyRTC',
   function ($scope, $window, $location, Auth, EasyRTC) {
 
     $scope.accountAlreadyExists = false;

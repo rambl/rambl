@@ -1,6 +1,6 @@
 angular.module('ramblApp.lobby', [])
 
-.controller('lobbyController', ['$scope', '$window', '$location', '$interval', 'EasyRTC', 'Auth', 
+.controller('LobbyController', ['$scope', '$window', '$location', '$interval', 'EasyRTC', 'Auth', 
   function ($scope, $window, $location, $interval, EasyRTC, Auth) {
     $scope.data = {};
     $scope.data.userName = $window.localStorage.getItem('ramblUsername');
