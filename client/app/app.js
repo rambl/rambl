@@ -9,8 +9,7 @@ angular.module('ramblApp',
    'ramblApp.lobby', 
    'ramblApp.room'])
 
-.config(['$routeProvider', '$httpProvider', 
-  function ($routeProvider, $httpProvider) {
+.config(function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'app/home/home.html',
@@ -37,7 +36,7 @@ angular.module('ramblApp',
       });
 
       $httpProvider.interceptors.push('AttachTokens');
-}])
+})
 
 .factory('AttachTokens', ['$window',
   function ($window) {
