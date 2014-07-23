@@ -7,10 +7,20 @@
 
 </head>
   <body ng-app="ramblApp">
+
+    <!--navbar -->
+    <div ng-include="'components/navbar/navbar.html'" ng-controller="navbarController"></div>
+
+    <!-- app views -->
     <div ng-view></div>
 
     <!-- development scripts are compiled by gulp -->
     <script src="built.min.js"></script>
+
+    <!-- footer-->
+    <div class="footer">
+      <p class="copyright">&copy; 2014 Rambl</p>
+    </div>
 
   </body>
 </html>
