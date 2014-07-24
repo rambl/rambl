@@ -12,8 +12,8 @@ angular.module('ramblApp',
    'ramblApp.lobby',
    'ramblApp.room'])
 
-.config(['$routeProvider', '$httpProvider', '$locationProvider',
-  function ($routeProvider, $httpProvider, $locationProvider) {
+.config(['$routeProvider', '$httpProvider',
+  function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'app/home/home.html',
@@ -43,9 +43,6 @@ angular.module('ramblApp',
         redirectTo: '/'
       });
 
-      if(window.history && window.history.pushState) {
-        $locationProvider.html5Mode(true);
-      }
       $httpProvider.interceptors.push('AttachTokens');
 }])
 
