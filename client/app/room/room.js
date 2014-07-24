@@ -1,6 +1,6 @@
 angular.module('ramblApp.room', [])
 
-.controller('RoomController', ['$scope', '$window', '$location', 'EasyRTC', 'InterviewQuestions', 'Auth', 
+.controller('roomController', ['$scope', '$window', '$location', 'EasyRTC', 'InterviewQuestions', 'Auth', 
   function ($scope, $window, $location, EasyRTC, InterviewQuestions, Auth) {
     $scope.data = {};
     $scope.data.currentRoom = EasyRTC.getCurrentRoom();

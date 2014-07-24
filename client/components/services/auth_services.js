@@ -9,6 +9,10 @@ angular.module('ramblApp.authServices', [])
     // after you login/signup open devtools, click resources,
     // then localStorage and you'll see your token from the server
 
+    var getUsername = function() {
+      return $window.localStorage.getItem('ramblUsername');
+    };
+
     var login = function (user) {
 
       return $http({
@@ -60,14 +64,14 @@ angular.module('ramblApp.authServices', [])
     };
 
     var processLogin = function(userObject) {
-      console.log("What is $window.localStorage", $window.localStorage);
-      $window.localStorage.setItem('ramblUsername', userObject.userName);
       $window.localStorage.setItem('ramblToken', userObject.token);
-      $location.path('/lobby'); //Redirect to lobby
+      $window.localStorage.setItem('ramblUsername', userObject.userName);
+      $location.path('/lobby');
     };
 
 
     return {
+      getUsername: getUsername,
       login: login,
       signup: signup,
       signout: signout,

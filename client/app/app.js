@@ -1,35 +1,42 @@
-angular.module('ramblApp', 
-  ['ngRoute', 
-   'ramblApp.authServices', 
+angular.module('ramblApp',
+  ['ngRoute',
+   'ramblApp.app',
+   'ramblApp.authServices',
    'ramblApp.easyRTCServices',
    'ramblApp.interviewServices',
+   'ramblApp.navbar',
    'ramblApp.home',
+   'ramblApp.login',
    'ramblApp.signup',
    'ramblApp.about',
-   'ramblApp.lobby', 
+   'ramblApp.lobby',
    'ramblApp.room'])
 
 .config(['$routeProvider', '$httpProvider', '$locationProvider',function ($routeProvider, $httpProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'app/home/home.html',
-        controller: 'HomeController'
+        controller: 'homeController'
+      })
+      .when('/login', {
+        templateUrl: 'app/login/login.html',
+        controller: 'loginController'
       })
       .when('/signup', {
         templateUrl: 'app/signup/signup.html',
-        controller: 'SignupController'
+        controller: 'signupController'
       })
       .when('/about', {
         templateUrl: 'app/about/about.html',
-        controller: 'AboutController'
+        controller: 'aboutController'
       })
       .when('/lobby', {
         templateUrl: 'app/lobby/lobby.html',
-        controller: 'LobbyController'
+        controller: 'lobbyController'
       })
       .when('/room', {
         templateUrl: 'app/room/room.html',
-        controller: 'RoomController'
+        controller: 'roomController'
       })
       .otherwise({
         redirectTo: '/'
@@ -60,17 +67,18 @@ angular.module('ramblApp',
   function($rootScope, $location, $window, Auth) {
 
     $rootScope.$on('$routeChangeStart', function(evt, next, current) {
-      if (next && 
-          next.$$route && 
-          next.$$route.controller && 
-          (next.$$route.controller !== 'HomeController' && 
-            next.$$route.controller !== 'SignupController' && 
-            next.$$route.controller !== 'AboutController')) {
+      if (next &&
+          next.$$route &&
+          next.$$route.controller &&
+          (next.$$route.controller !== 'homeController' &&
+            next.$$route.controller !== 'loginController' &&
+            next.$$route.controller !== 'signupController' &&
+            next.$$route.controller !== 'aboutController')) {
         Auth.isAuth()
           .then(function() {
           })
           .catch(function() {
-            $location.path('/');
+            $location.path('/login');
           });
       }
     });

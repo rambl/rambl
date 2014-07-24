@@ -1,7 +1,8 @@
-angular.module('ramblApp.home', [])
+angular.module('ramblApp.login', [])
 
-.controller('homeController', ['$scope', '$window', '$location', 'Auth', 'EasyRTC',
+.controller('loginController', ['$scope', '$window', '$location', 'Auth', 'EasyRTC',
   function ($scope, $window, $location, Auth, EasyRTC) {
+
     $scope.invalidAccountInfo = false;
 
     // if user has userName and token, redirect to lobby, else check if they're coming from
@@ -22,6 +23,7 @@ angular.module('ramblApp.home', [])
         .then(function (userObject) {
           if (userObject.token !== undefined && userObject.userName !== undefined) {
             Auth.processLogin(userObject);
+            $scope.data.username = Auth.getUsername();
           } else {
             $scope.invalidAccountInfo = true;
           }
@@ -31,5 +33,5 @@ angular.module('ramblApp.home', [])
         });
     };
 
-    $scope.signout = Auth.signout; 
+    $scope.signout = Auth.signout;
 }]);

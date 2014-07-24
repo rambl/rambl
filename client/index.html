@@ -6,29 +6,40 @@
 
   <!-- For remove # from url bar -->
   <base href="/">
-  
 </head>
-  <body ng-app="ramblApp">
+  <body ng-app="ramblApp" ng-controller="appController">
+
+    <!--navbar -->
+    <div ng-include="'components/navbar/navbar.html'" ng-controller="navbarController"></div>
+
+    <!-- app views -->
     <div ng-view></div>
-    
-    <script src="built.min.js"></script>
 
-  <!-- development scripts -->
-    <!-- <script src="socket.io/socket.io.js"></script>
-    <script src="easyrtc/easyrtc.js"></script>
-    <script src="lib/angular/angular.js"></script>  
-    <script src="lib/angular-route/angular-route.js"></script>
-    <script src="lib/underscore/underscore.js"></script>
+    <!-- development scripts are compiled by gulp -->
+    <!-- <script src="built.min.js"></script> -->
 
-    <script src="app/app.js"></script>
-    <script src="app/services/auth_services.js"></script>
-    <script src="app/services/easyrtc_services.js"></script>
-    <script src="app/services/interview_services.js"></script>
-    <script src="app/home/home.js"></script>
-    <script src="app/signup/signup.js"></script>
-    <script src="app/about/about.js"></script>
-    <script src="app/lobby/lobby.js"></script>
-    <script src="app/room/room.js"></script> -->
- 
+    <!-- uncompiled -->
+    <script src='../lib/socket.io.min.js'></script>
+    <script src='../lib/easyrtc.js'></script>
+    <script src='../lib/angular/angular.min.js'></script>
+    <script src='../lib/angular-route/angular-route.min.js'></script>
+    <script src='../lib/underscore/underscore.js'></script>
+    <script src='app/app.js'></script>
+    <script src='app/app.controller.js'></script>
+    <script src='components/services/auth_services.js'></script>
+    <script src='components/services/easyrtc_services.js'></script>
+    <script src='components/services/interview_services.js'></script>
+    <script src='components/navbar/navbar.js'></script>
+    <script src='app/home/home.js'></script>
+    <script src='app/login/login.js'></script>
+    <script src='app/signup/signup.js'></script>
+    <script src='app/about/about.js'></script>
+    <script src='app/lobby/lobby.js'></script>
+    <script src='app/room/room.js'></script>
+
+    <!-- footer-->
+    <div class="footer">
+      <p class="copyright">&copy; 2014 Rambl</p>
+    </div>
   </body>
 </html>
