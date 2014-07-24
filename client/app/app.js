@@ -35,7 +35,7 @@ angular.module('ramblApp',
         redirectTo: '/'
       });
 
-      //Not work yet   !!!!!
+    // For remove # from url bar
     if(window.history && window.history.pushState){
       $locationProvider.html5Mode(true);
     }
