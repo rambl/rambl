@@ -13,10 +13,12 @@
 	  </div>
 	  <div class="col-md-6">
 	    <div class="input-group">
-	  	  <input type="text" class="form-control" maxlength="45" placeholder="Create room" ng-model="newRoom" />
-	  	  <span class="input-group-btn">
-	  	    <button type="button" class="btn btn-primary" ng-click="setCurrentRoomAndNavigate(newRoom)">Submit</button>
-	      </span>
+        <form ng-submit="setCurrentRoomAndNavigate(newRoom)">
+	  	    <input type="text" class="form-control" maxlength="45" placeholder="Create room" ng-model="newRoom" />
+	  	  </form>
+          <span class="input-group-btn">
+	  	      <button type="button" class="btn btn-primary" ng-click="setCurrentRoomAndNavigate(newRoom)">Submit</button>
+	        </span>
 	    </div>
 	  </div>
   </div>
