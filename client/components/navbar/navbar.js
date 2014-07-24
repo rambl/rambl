@@ -7,18 +7,9 @@ angular.module('ramblApp.navbar', [])
       $scope.data.username = Auth.getUsername();
     };
 
+    $scope.getUsername = Auth.getUsername;
+
     $scope.isLoggedIn = function(){
-      if ($scope.data.username) {
-        return true;
-      } else {
-        return false;
-      }
-      // Auth.isAuth()
-      // .then(function(){
-      //   console.log('hooray!');
-      // })
-      // .catch(function(){
-      //   console.log('sorry');
-      // });
+      return Auth.getUsername(); //will return null if not preset, otherwise will return value;
     };
 }]);
