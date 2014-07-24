@@ -9,6 +9,7 @@ var paths = {
     'client/lib/angular-route/angular-route.min.js',
     'client/lib/underscore/underscore.js',
     'client/app/app.js',
+    'client/app/app.controller.js',
     'client/components/services/auth_services.js',
     'client/components/services/easyrtc_services.js',
     'client/components/services/interview_services.js',

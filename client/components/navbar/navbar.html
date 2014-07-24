@@ -2,11 +2,11 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav">
       <li><a class="navbar-brand" href="#/">Rambl</a></li>
-      <li><a href="#/about">About</a></li>
-      <li><a href='#/login'>Login</a></li>
-      <li><a href='#/signup'>Signup</a></li>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="top_username"><p class="navbar-text">Signed in as: {{data.userName}}</p></li>
+      <!-- <li><a href="#/about">About</a></li> -->
+      <li ng-if="!data.username"><a href='#/login'>Login</a></li>
+      <li ng-if="!data.username"><a href='#/signup'>Signup</a></li>
+      <ul class="nav navbar-nav navbar-right" ng-if="data.username">
+        <li class="top_username"><p class="navbar-text">Signed in as: {{ data.username }}</p></li>
         <li><a ng-click="signout();" href="javascript:void(0);">Sign Out</a></li>
       </ul>
     </ul>

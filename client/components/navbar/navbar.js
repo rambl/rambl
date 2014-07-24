@@ -1,9 +1,24 @@
 angular.module('ramblApp.navbar', [])
 
-.controller('navbarController', ['$scope', '$window', 'Auth',
-  function ($scope, $window, Auth) {
-    $scope.data = {};
-    $scope.data.userName = $window.localStorage.getItem('ramblUsername');
+.controller('navbarController', ['$scope', 'Auth',
+  function ($scope, Auth) {
+    $scope.signout = function(){
+      Auth.signout();
+      $scope.data.username = Auth.getUsername();
+    };
 
-    $scope.signout = Auth.signout;
+    $scope.isLoggedIn = function(){
+      if ($scope.data.username) {
+        return true;
+      } else {
+        return false;
+      }
+      // Auth.isAuth()
+      // .then(function(){
+      //   console.log('hooray!');
+      // })
+      // .catch(function(){
+      //   console.log('sorry');
+      // });
+    };
 }]);

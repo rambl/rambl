@@ -1,5 +1,6 @@
 angular.module('ramblApp',
   ['ngRoute',
+   'ramblApp.app',
    'ramblApp.authServices',
    'ramblApp.easyRTCServices',
    'ramblApp.interviewServices',
