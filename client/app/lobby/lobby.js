@@ -6,6 +6,8 @@ angular.module('ramblApp.lobby', [])
     $scope.data.userName = $window.localStorage.getItem('ramblUsername');
     // sets currentRoom then navigates to the room route
     $scope.setCurrentRoomAndNavigate = function (roomName) {
+      console.log("what is roomName",roomName);
+      console.log("I want to see the EasyRTC function", EasyRTC.setCurrentRoom);
       EasyRTC.setCurrentRoom(roomName); 
       $location.path('/room'); 
     };

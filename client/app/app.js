@@ -9,7 +9,7 @@ angular.module('ramblApp',
    'ramblApp.lobby', 
    'ramblApp.room'])
 
-.config(function ($routeProvider, $httpProvider, $locationProvider) {
+.config(['$routeProvider', '$httpProvider', '$locationProvider',function ($routeProvider, $httpProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'app/home/home.html',
@@ -40,7 +40,7 @@ angular.module('ramblApp',
       $locationProvider.html5Mode(true);
     }
       $httpProvider.interceptors.push('AttachTokens');
-})
+}])
 
 .factory('AttachTokens', ['$window',
   function ($window) {
