@@ -23,6 +23,7 @@ angular.module('ramblApp.login', [])
         .then(function (userObject) {
           if (userObject.token !== undefined && userObject.userName !== undefined) {
             Auth.processLogin(userObject);
+            $scope.data.username = Auth.getUsername();
           } else {
             $scope.invalidAccountInfo = true;
           }
