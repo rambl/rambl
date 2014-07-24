@@ -2,7 +2,6 @@ angular.module('ramblApp.home', [])
 
 .controller('HomeController', ['$scope', '$window', '$location', 'Auth', 'EasyRTC',
   function ($scope, $window, $location, Auth, EasyRTC) {
-    $scope.testHome = "This is testing home controller";
     $scope.invalidAccountInfo = false;
 
     // if user has userName and token, redirect to lobby, else check if they're coming from
@@ -18,11 +17,9 @@ angular.module('ramblApp.home', [])
       }
     }
 
-    $scope.login = function (form) {
-      console.log("scope login in homes.js is calling", form);    
+    $scope.login = function () {
       Auth.login($scope.user)
         .then(function (userObject) {
-          console.log("This is home.js login after get userObject");
           if (userObject.token !== undefined && userObject.userName !== undefined) {
             Auth.processLogin(userObject);
           } else {

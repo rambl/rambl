@@ -3,9 +3,7 @@ angular.module('ramblApp.lobby', [])
 .controller('LobbyController', ['$scope', '$window', '$location', '$interval', 'EasyRTC', 'Auth', 
   function ($scope, $window, $location, $interval, EasyRTC, Auth) {
     $scope.data = {};
-    console.log("testing lobby in console")
     $scope.data.userName = $window.localStorage.getItem('ramblUsername');
-    $scope.testLobby = "Testing lobby now"
     // sets currentRoom then navigates to the room route
     $scope.setCurrentRoomAndNavigate = function (roomName) {
       EasyRTC.setCurrentRoom(roomName); 
