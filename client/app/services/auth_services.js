@@ -60,6 +60,7 @@ angular.module('ramblApp.authServices', [])
     };
 
     var processLogin = function(userObject) {
+      console.log("What is $window.localStorage", $window.localStorage);
       $window.localStorage.setItem('ramblUsername', userObject.userName);
       $window.localStorage.setItem('ramblToken', userObject.token);
       $location.path('/lobby');

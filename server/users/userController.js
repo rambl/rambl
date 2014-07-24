@@ -27,7 +27,6 @@ module.exports = {
               userName: user.name,
               email: user.email
             };
-            console.log("userObj is ", userObj);
             res.json(userObj);
           } else {
             console.log('Password authentication failed.');

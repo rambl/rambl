@@ -35,6 +35,7 @@ angular.module('ramblApp',
         redirectTo: '/'
       });
 
+      //Not work yet   !!!!!
     if(window.history && window.history.pushState){
       $locationProvider.html5Mode(true);
     }
@@ -62,9 +63,9 @@ angular.module('ramblApp',
       if (next && 
           next.$$route && 
           next.$$route.controller && 
-          (next.$$route.controller !== 'homeController' && 
-            next.$$route.controller !== 'signupController' && 
-            next.$$route.controller !== 'aboutController')) {
+          (next.$$route.controller !== 'HomeController' && 
+            next.$$route.controller !== 'SignupController' && 
+            next.$$route.controller !== 'AboutController')) {
         Auth.isAuth()
           .then(function() {
           })
