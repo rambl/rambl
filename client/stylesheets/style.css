@@ -70,6 +70,16 @@ body {
 }
 
 /* lobby view styles */
+#lobby-container {
+  position: fixed;
+  background-image: url("images/Candidates.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  top: 50px !important;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
 
 /* room view styles */
@@ -85,7 +95,7 @@ body {
 
 #partner_name_container {
   width: 600px;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
 #partner_name_container p {
@@ -120,9 +130,3 @@ body {
 .hide_questions_button {
   width: 73px;
 }
-
-
-
-
-
-

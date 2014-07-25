@@ -1,44 +1,48 @@
 angular.module('ramblApp.lobby', [])
 
-.controller('lobbyController', ['$scope', '$window', '$location', '$interval', 'EasyRTC', 'Auth', 
+.controller('lobbyController', ['$scope', '$window', '$location', '$interval', 'EasyRTC', 'Auth',
   function ($scope, $window, $location, $interval, EasyRTC, Auth) {
     $scope.data = {};
-    $scope.data.userName = $window.localStorage.getItem('ramblUsername');
+    $scope.data.userName = Auth.getUsername();
 
     // sets currentRoom then navigates to the room route
     $scope.setCurrentRoomAndNavigate = function (roomName) {
-      EasyRTC.setCurrentRoom(roomName); 
-      $location.path('/room'); 
+      EasyRTC.setCurrentRoom(roomName);
+      $location.path('/room/');
     };
-    
-    $scope.signout = Auth.signout; 
+
+    $scope.signout = Auth.signout;
 
     // check if there is a current room and if so leave it and hang up all calls
     if (EasyRTC.getCurrentRoom()) {
       EasyRTC.leaveRoom();
     }
-    
-    // connect to server then get rooms with asynchronous callback and apply them to scope
+
+    // connect to server then get rooms with asynchronous callback and apply them to scope - ???
     EasyRTC.connect(function () {
   	  EasyRTC.getRooms(function (rooms) {
+        console.log('connect + getroom');
   	  	$scope.$apply(function () {
     	    $scope.data.rooms = rooms;
   	  	});
   	  });
     });
-    
-    // this is so that rooms are displayed instantly when going from room to lobby 
+
+    // this is so that rooms are displayed instantly when going from room to lobby    ∆ repeat
     EasyRTC.getRooms(function (rooms) {
-  	  	$scope.$apply(function () {
-  		    $scope.data.rooms = rooms;
-  	  	});
+	  	console.log('getroom');
+      $scope.$apply(function () {
+		    $scope.data.rooms = rooms;
+	  	});
   	});
 
-    // update room list every 2 seconds 
+    // update room list every 2 seconds
     var getRoomsRepeatedly = $interval(function () {
       if (EasyRTC.getConnectionStatus() === true && EasyRTC.getCurrentRoom() === null) {
+
         EasyRTC.getRooms(function (rooms) {
           $scope.$apply(function () {
+            console.log('getRoomsRepeatedly');
             $scope.data.rooms = rooms;
           });
         });
@@ -47,4 +51,3 @@ angular.module('ramblApp.lobby', [])
       }
     }, 2000);
 }]);
-
