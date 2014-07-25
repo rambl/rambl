@@ -25,19 +25,27 @@ body {
 
 .copyright {
   margin-top: 10px;
-  margin-right: 20px;
   text-align: right;
 }
 
 /* home view styles */
 .logo {
-  color: #fff;
+  color: #c41321;
   font-size: 4em;
+}
+
+.logo h1 {
+  color: #c41321;
 }
 
 .logo_container {
   margin-top: 11px;
   margin-bottom: 30px;
+}
+
+.signin_div {
+  background-color: #644f50;
+  text-align: center;
 }
 
 .signin_div input {
@@ -51,6 +59,11 @@ body {
   margin: 0 auto;
 }
 
+.signin button {
+  display: block;
+  width: 100%;
+}
+
 /* signup view styles */
 .signup {
   width: 440px !important;
@@ -59,9 +72,19 @@ body {
   padding-top: 20px;
 }
 
+.signup_div {
+  background-color: #644f50;
+  text-align: center;
+}
+
 .signup_div input {
   padding: 4px;
   margin-top: 4px;
+}
+
+.signup button {
+  display: block;
+  width: 100%;
 }
 
 /* about view styles */
