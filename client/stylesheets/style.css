@@ -7,14 +7,20 @@ html {
 body {
   margin-bottom: 60px;
   padding-top: 60px;
+  background-color: #e7e2d3;
 }
 
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 40px;
-  background-color: #0d747c;
+  height: 50px;
+  line-height: 30px;
+  background-color: #535353;
+}
+
+.footer p {
+  text-align: center;
 }
 
 .copyright {
@@ -85,7 +91,7 @@ body {
 
 #partner_name_container {
   width: 600px;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
 #partner_name_container p {
@@ -120,9 +126,3 @@ body {
 .hide_questions_button {
   width: 73px;
 }
-
-
-
-
-
-

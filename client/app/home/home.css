@@ -1,0 +1,43 @@
+.home h1, .home h2 {
+  font-family: 'Cabin' sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.home h1 {
+  color: #c41321;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.home h2 {
+  color: #3f2c2d;
+  margin-bottom: 20px;
+}
+
+.home img {
+  width: 100%;
+}
+
+.home .sub-section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  color: #3f2c2d;
+  text-align: center;
+}
+
+.home .sub-section p {
+  font-size: 1.2em;
+}
+
+.home .sub-section:before {
+  content: '';
+  height: 1px;
+  width: 100%;
+  border: 1px solid #cdc8b7;
+}
+
+.home .sub-section button {
+  margin-top: 24px;
+}
