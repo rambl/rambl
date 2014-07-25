@@ -3,20 +3,23 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 logo_container">
-      <h1 class="logo text-center">Rambl</h1>
+      <h1 class="logo text-center">Login</h1>
     </div>
-  </div>
-  <div class="signin">
-    <div id='login' class="jumbotron signin_div">
-      <form name='loginForm' ng-submit='login();'>
-        <div class="alert alert-danger" ng-show="invalidAccountInfo">Invalid email/password.</div>
-        <input placeholder="Email" required class="form-control" type='email' maxlength="32" ng-model='user.email'>
-        <input placeholder="Password" required class="form-control" type='password' maxlength="32" ng-model='user.password'>
-        <br />
-        <button class="btn btn-primary bt-lg">Login</button>
-      </form>
-      <br />
-      <a href='#/signup'>Signup</a>
-    </div>
-  </div>
+
+    <div class="col-md-12">
+      <div class="signin">
+        <div id='login' class="jumbotron signin_div">
+          <form name='loginForm' ng-submit='login();'>
+            <div class="alert alert-danger" ng-show="invalidAccountInfo">Invalid email/password.</div>
+            <input placeholder="Email" required class="form-control" type='email' maxlength="32" ng-model='user.email'>
+            <input placeholder="Password" required class="form-control" type='password' maxlength="32" ng-model='user.password'>
+            <br />
+            <button class="btn btn-primary bt-lg">Login</button>
+          </form>
+          <br />
+          <a href='#/signup'>Signup</a>
+        </div>
+      </div>
+    </div><!-- end col -->
+  </div><!-- end row -->
 </div>

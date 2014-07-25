@@ -1,0 +1,100 @@
+/* lobby view styles */
+#lobby-container {
+  position: fixed;
+  background-image: url("../../assets/images/Candidates.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  top: 50px !important;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+
+  font-family: "arial","helvetica", sans-serif;
+  font-size: 20px;
+}
+
+.input-container {
+  margin: 120px auto 0;
+  width: 55%;
+  height: 330px;
+}
+
+.lobby-present {
+  /*background-color: rgba(240,97,51,.90);*/
+  border-top: 2px solid rgb(255,131,94);
+  border-bottom: 1px solid rgb(153,61,33);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.header-row {
+  background-color: rgba(240,97,51,.90);
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+
+.lobby-page-header {
+  /*border-top: 2px solid rgb(255,131,94);*/
+  margin-bottom: 0px;
+  border-bottom: 1px solid rgb(153,61,33) !important;
+}
+
+.page-body {
+  background-color: rgba(240,97,51,.90);
+  border-top: 2px solid rgb(255,131,94);
+}
+
+#lobby-top-input {
+  /*position: absolute;*/
+  top: 175px;
+}
+
+#lobby-bottom-input {
+  display: inline-block;
+  /*position: absolute;*/
+}
+
+.create-room {
+  margin-top: 27px;
+}
+
+.create-room-input {
+  border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+}
+
+.filter-rooms {
+  margin-bottom: 24px;
+}
+
+.display-rooms {
+  padding-left: 25px;
+}
+
+.room-names {
+  margin-top: 0px !important;
+}
+
+.open-rooms {
+  border-top: 2px solid rgb(255,131,94);
+  border-bottom: 1px solid rgb(153,61,33);
+  padding-left: 0px;
+  padding-right: 0px;
+  background-color: rgba(240,97,51,.90);
+}
+
+.list-group {
+  padding-right: 0px;
+}
+
+.open-rooms {
+  padding-left: 28px;
+  padding-bottom: 5px;
+  list-style-type: none;
+}
+.open-rooms a {
+  color: white !important;
+  text-decoration: none;
+}

@@ -1,0 +1,169 @@
+/* room view styles */
+
+#self-container {
+  width: 149px;
+  height: 109px;
+
+  background: #006796;
+  text-align: center;
+  margin-bottom: 15px;
+  /*margin-right: 20px;*/
+  /*position: absolute;*/
+}
+
+#self {
+  /*position: absolute;
+  left: 0px;
+  display: inline;*/
+  margin: 0 auto;
+  padding-top: 8px;
+  /*width: Auto;*/
+}
+
+#other {
+  /*display: block;*/
+  margin: 0 auto;
+  /*width:30%;*/
+  display: inline-block;
+}
+
+#partner_name_container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+#partner_name_container p {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.main_room_container {
+  /*width: 970px !important;*/
+}
+
+.questions_container {
+  position: absolute;
+  right: 5px;
+  height: 500px;
+  width: 150px;
+  overflow: auto;
+}
+
+.questions {
+  position: absolute;
+  height: 365px;
+  width: 150px;
+  overflow: auto;
+}
+
+.questions_button {
+  width: 150px;
+}
+
+.hide_questions_button {
+  width: 73px;
+}
+
+
+
+
+
+
+#distant-background {
+  background: #006796;
+  position: fixed;
+
+  background-size: 100%;
+  top: 50px !important;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+
+  font-family: "arial","helvetica", sans-serif;
+  font-size: 20px;
+}
+
+.main_room_container {
+  position: absolute;
+  width: 60%;
+  background: #5FB5C9;
+  height: 100%;
+
+  font-family: "arial","helvetica", sans-serif;
+  font-size: 20px;
+  text-align: center;
+}
+
+.room-header {
+  margin-top: 0px !important;
+  margin-bottom: 10px !important;
+  border-bottom: 2px solid #0d747c;
+  padding-top: 40px;
+}
+
+#arrow-up {
+  margin-top: 5px;
+  width: 0;
+  height: 0;
+  top:0;
+  float: right;
+  margin-right: 120px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid #9E1F63;
+}
+
+#tool-index {
+  position: absolute;
+  top: 24px;
+  width: 18em;
+  /*right: 45px;*/
+  color: white;
+  background-color: #9E1F63;
+  padding-left: 0.75em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-right: 0.5em;
+  z-index: 1;
+}
+
+#partner-video-wrapper {
+  text-align: center;
+  padding-top: 40px;
+}
+
+/*#parner-name-format {
+  font-family: 'Lobster', cursive;
+}*/
+
+#note-col-wrap {
+  text-align: center;
+}
+
+#note-taking-container {
+  position: absolute;
+  margin-top: 120px !important;
+  width: 18em;
+  /*right: 45px;*/
+  color: white;
+  background-color: #9E1F63;
+  padding-left: 0.75em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-right: 0.5em;
+  z-index: 1;
+}
+
+#note-pad {
+  margin-top: 7px;
+  width: 325px;
+  height: 450px;
+  resize: none;
+  padding: 25px;
+}
+
+#self-container-wrap {
+  margin-right: 20px;
+  position: fixed;
+  top: 60px;
+}

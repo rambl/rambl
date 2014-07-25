@@ -35,7 +35,7 @@ angular.module('ramblApp',
         templateUrl: 'app/lobby/lobby.html',
         controller: 'lobbyController'
       })
-      .when('/room', {
+      .when('/room/:newRoom', {
         templateUrl: 'app/room/room.html',
         controller: 'roomController'
       })

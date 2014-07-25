@@ -1,22 +1,31 @@
 <div ng-include="'/components/navbar/navbar.html'" ng-controller="navbarController"></div>
 
+<div ng-include="'/components/navbar/navbar.html'" ng-controller="navbarController"></div>
+
 <div class="container">
-  <div class="signup">
-    <div id="signup" class="jumbotron signup_div">
-      <h2>Sign Up!</h2>
-      <form name="signupForm" ng-submit="signup()">
-        <div class="alert alert-danger" ng-show="accountAlreadyExists">Account already exists.</div>
-        <input placeholder='Your email' required class="form-control" type="email" maxlength="32" ng-model="user.email">
-        <input placeholder='Your display name' required class="form-control" type="text" maxlength="32" ng-model="user.name">
-        <input placeholder='Password' required class="form-control" type="password" maxlength="32" ng-model="user.password">
-        <br/>
-  <!--       Re-enter Password: <input type='password' name='signupPasswordAgain' ng-model='user.password'>
-        <br/>
-   -->
-        <button class="btn btn-primary bt-lg">Submit</button>
-      </form>
-      <br />
-      <a href='#/'>Login</a>
+  <div class="row">
+    <div class="col-md-12 logo_container">
+      <h1 class="logo text-center">Signup!</h1>
     </div>
-  </div>
+
+    <div class="col-md-12">
+      <div class="signup">
+        <div id='signup' class="jumbotron signup_div">
+          <form name="signupForm" ng-submit="signup();">
+            <div class="alert alert-danger" ng-show="accountAlreadyExists">Account already exists.</div>
+            <input placeholder='Your display name' required class="form-control" type="text" maxlength="32" ng-model="user.name">
+            <input placeholder='Your email' required class="form-control" type="email" maxlength="32" ng-model="user.email">
+            <input placeholder='Password' required class="form-control" type="password" maxlength="32" ng-model="user.password">
+            <br/>
+      <!--       Re-enter Password: <input type='password' name='signupPasswordAgain' ng-model='user.password'>
+            <br/>
+       -->
+            <button class="btn btn-primary bt-lg">Submit</button>
+          </form>
+          <br />
+          <a href='#/'>Login</a>
+        </div>
+      </div>
+    </div><!-- end col -->
+  </div><!-- end row -->
 </div>

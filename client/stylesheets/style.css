@@ -25,19 +25,27 @@ body {
 
 .copyright {
   margin-top: 10px;
-  margin-right: 20px;
   text-align: right;
 }
 
 /* home view styles */
 .logo {
-  color: #fff;
+  color: #c41321;
   font-size: 4em;
+}
+
+.logo h1 {
+  color: #c41321;
 }
 
 .logo_container {
   margin-top: 11px;
   margin-bottom: 30px;
+}
+
+.signin_div {
+  background-color: #644f50;
+  text-align: center;
 }
 
 .signin_div input {
@@ -51,6 +59,11 @@ body {
   margin: 0 auto;
 }
 
+.signin button {
+  display: block;
+  width: 100%;
+}
+
 /* signup view styles */
 .signup {
   width: 440px !important;
@@ -59,9 +72,19 @@ body {
   padding-top: 20px;
 }
 
+.signup_div {
+  background-color: #644f50;
+  text-align: center;
+}
+
 .signup_div input {
   padding: 4px;
   margin-top: 4px;
+}
+
+.signup button {
+  display: block;
+  width: 100%;
 }
 
 /* about view styles */
@@ -73,56 +96,4 @@ body {
 
 .about p {
   font-size: 1.2em;
-}
-
-/* lobby view styles */
-
-
-/* room view styles */
-#self {
-  position: absolute;
-  left: 0;
-}
-
-#other {
-  display: block;
-  margin: 0 auto;
-}
-
-#partner_name_container {
-  width: 600px;
-  margin: 0 auto;
-}
-
-#partner_name_container p {
-  margin-top: 10px;
-  text-align: center;
-  font-size: 1.5em;
-}
-
-.main_room_container {
-  width: 970px !important;
-}
-
-.questions_container {
-  position: absolute;
-  right: 5px;
-  height: 500px;
-  width: 150px;
-  overflow: auto;
-}
-
-.questions {
-  position: absolute;
-  height: 365px;
-  width: 150px;
-  overflow: auto;
-}
-
-.questions_button {
-  width: 150px;
-}
-
-.hide_questions_button {
-  width: 73px;
 }
