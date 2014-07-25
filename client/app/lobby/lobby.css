@@ -58,13 +58,16 @@
 }
 
 .create-room {
-  padding-top: 30px;
+  margin-top: 27px;
+}
+
+.create-room-input {
   border-top-left-radius: 4px !important;
   border-bottom-left-radius: 4px !important;
 }
 
 .filter-rooms {
-  margin-bottom: 25px;
+  margin-bottom: 24px;
 }
 
 .display-rooms {

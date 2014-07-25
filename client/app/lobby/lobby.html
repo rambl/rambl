@@ -66,7 +66,7 @@
               <div class="col-md-offset-2 col-md-8">
                 <div class="input-group">
                   <form ng-submit="setCurrentRoomAndNavigate(newRoom)">
-                    <input type="text" class="form-control create-room" maxlength="45" placeholder="Create room" ng-model="newRoom" />
+                    <input type="text" class="form-control create-room-input" maxlength="45" placeholder="Create room" ng-model="newRoom" />
                   </form>
                     <span class="input-group-btn">
                       <button type="button" class="btn btn-primary" ng-click="setCurrentRoomAndNavigate(newRoom)">Submit</button>
@@ -88,7 +88,7 @@
                 <h3 class="room-header" ng-show="data.rooms">Ready to join:</h3>
               </div>
             </div>
-            
+
           </div>
         </div>
 
