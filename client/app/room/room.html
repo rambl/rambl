@@ -1,30 +1,57 @@
 <div ng-include="'/components/navbar/navbar.html'" ng-controller="navbarController"></div>
 
-<div class="container main_room_container">
+<div id="distant-background">
 
-  <div class="row">
-	  <div class="page-header">
-	    <h1 class="text-center">Room: {{data.currentRoom}}</h1>
-	  </div>
-	</div>
 
-  <div class="row">
-    <div class="col-md-12">
-	    <video id="self" width="150" height="100" muted="muted" volume="0"></video>
-		    <div class="questions_container">
-		      <button class="questions_button btn btn-primary" ng-show="!showQuestions"
-		        ng-click="showQuestions = !showQuestions">Show Questions</button>
-		      <button class="hide_questions_button btn btn-primary" ng-show="showQuestions"
-		        ng-click="showQuestions = !showQuestions">Hide</button>
-		      <button class="hide_questions_button btn btn-primary" ng-show="showQuestions"
-		        ng-click="shuffleQuestions()">Random</button>
-		      <ul class="list-group questions" ng-show="showQuestions">
-		        <li class="list-group-item" ng-repeat="question in data.questions">{{question}}</li>
-		      </ul>
-		    </div>
-	    <video id="other" width="600" height="400"></video>
-      <div id="partner_name_container"></div>
-	  </div>
+  <div id="arrow-up"></div>
+  <div id="tool-index">
+    <h3>Click above to allow camera access</h3>
   </div>
 
-</div> <!-- end main_room_container -->
+
+
+  <div class="container main_room_container">
+
+
+    <div class="row">
+  	  <div class="page-header room-header">
+  	    <h1 class="text-center">Room: {{data.currentRoom}}</h1>
+  	  </div>
+  	</div>
+
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <div id="self-container">
+  	       <video id="self" width="150" height="100" muted="muted" volume="0"></video>
+        </div>
+
+  		    <div class="questions_container">
+  		      <button class="questions_button btn btn-primary" ng-show="showQuestions"
+  		        ng-click="showQuestions = !showQuestions">Show Questions</button>
+  		      <button class="hide_questions_button btn btn-primary" ng-show="showQuestions"
+  		        ng-click="showQuestions = !showQuestions">Hide</button>
+  		      <button class="hide_questions_button btn btn-primary" ng-show="showQuestions"
+  		        ng-click="shuffleQuestions()">Random</button>
+  		      <ul class="list-group questions" ng-show="showQuestions">
+  		        <li class="list-group-item" ng-repeat="question in data.questions">{{question}}</li>
+  		      </ul>
+  		    </div>
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <div id="partner-video-wrapper">
+          	    <video id="other" width="600" height="400"></video>
+                <div id="partner_name_container"></div>
+              </div>
+            </div>
+          </div>
+
+  	  </div>
+    </div>
+
+  </div> <!-- end main_room_container -->
+
+</div>
