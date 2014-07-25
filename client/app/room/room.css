@@ -153,7 +153,8 @@
 #note-pad {
   margin-top: 7px;
   width: 325px;
-  resize:vertical;
+  height: 450px;
+  resize: none;
 }
 
 #self-container-wrap {
