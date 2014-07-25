@@ -5,6 +5,8 @@ angular.module('ramblApp.easyRTCServices', [])
     // gets set after a room is clicked in the lobby, gets passed to joinRoom
     var currentRoom = null;
 
+    var roomIsFull = false;
+
     // gets set to true after connecting in lobby, prevents repeated attempts to connect to easyrtc
     // after connection has been established.
     var connectionEstablished = false;
@@ -54,6 +56,7 @@ angular.module('ramblApp.easyRTCServices', [])
           }, 3000);
         }
 
+        console.log('%%%%%%% roomListener invoked');
         var partnerParagraph = $window.document.createElement('p');
         var partnerName = $window.document.createTextNode('Interview Partner: ' + otherPeers[i].username );
         partnerParagraph.appendChild(partnerName);
@@ -74,6 +77,8 @@ angular.module('ramblApp.easyRTCServices', [])
           partnerNameContainer.removeChild(partnerNameContainer.lastChild);
       }
 
+
+      console.log('$$$$$$$$ init room listener');
       for (var i in otherPeers) {
         var partnerParagraph = $window.document.createElement('p');
         var partnerName = $window.document.createTextNode('Interview Partner: ' + otherPeers[i].username);
@@ -203,5 +208,6 @@ angular.module('ramblApp.easyRTCServices', [])
       setCurrentRoom: setCurrentRoom,
       getCurrentRoom: getCurrentRoom,
       getConnectionStatus: getConnectionStatus,
+      roomIsFull: roomIsFull,
     };
 }]);
