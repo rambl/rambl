@@ -3,11 +3,14 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 
 var paths = {
-  scripts: ['client/lib/socket.io.min.js',
+  scripts: [
+    'client/lib/socket.io.min.js',
     'client/lib/easyrtc.js',
     'client/lib/angular/angular.min.js',
     'client/lib/angular-route/angular-route.min.js',
     'client/lib/underscore/underscore.js',
+    'client/lib/jquery/dist/jquery.min.js',
+    'client/lib/bootstrap/dist/js/bootstrap.min.js',
     'client/app/app.js',
     'client/app/app.controller.js',
     'client/components/services/auth_services.js',
