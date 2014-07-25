@@ -202,6 +202,6 @@ angular.module('ramblApp.easyRTCServices', [])
       leaveRoom: leaveRoom,
       setCurrentRoom: setCurrentRoom,
       getCurrentRoom: getCurrentRoom,
-      getConnectionStatus: getConnectionStatus
+      getConnectionStatus: getConnectionStatus,
     };
 }]);
