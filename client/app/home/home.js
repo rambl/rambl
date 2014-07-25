@@ -32,5 +32,5 @@ angular.module('ramblApp.home', [])
         });
     };
 
-    $scope.signout = Auth.signout; 
+    $scope.signout = Auth.signout;
 }]);
