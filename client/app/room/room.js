@@ -16,5 +16,9 @@ angular.module('ramblApp.room', [])
 
     // set up elements for local and remote streams, set up room occupant listener
     EasyRTC.interviewInit();
+
+    $scope.backToLobby = function () {
+        $location.path('/lobby');
+    };
 }]);
 
