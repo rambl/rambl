@@ -8,6 +8,7 @@ angular.module('ramblApp.lobby', [])
     // sets currentRoom then navigates to the room route
     $scope.setCurrentRoomAndNavigate = function (roomName) {
       EasyRTC.setCurrentRoom(roomName);
+      roomName = roomName.replace(/\s/g, '');
       $location.path('/room/' + roomName);
     };
 
