@@ -30,7 +30,7 @@
               <div class="col-md-offset-2 col-md-8">
                 <div class="input-group">
                   <form ng-submit="setCurrentRoomAndNavigate(newRoom)">
-                    <input type="text" class="form-control create-room-input" maxlength="45" placeholder="Create room" ng-model="newRoom" />
+                    <input type="text" class="form-control create-room-input" maxlength="45" placeholder="Create and join a new room" ng-model="newRoom" />
                   </form>
                     <span class="input-group-btn">
                       <button type="button" class="btn btn-primary" ng-click="setCurrentRoomAndNavigate(newRoom)">Submit</button>
@@ -42,14 +42,14 @@
             <!-- FILTER ROOMS -->
             <div class="row filter-rooms">
               <div class="col-md-offset-2 col-md-8">
-                  <input type="text" class="form-control" placeholder="Filter rooms" ng-model="roomFilter" />
+                  <input type="text" class="form-control" placeholder="Find an open room" ng-model="roomFilter" />
               </div>
             </div>
 
             <!-- ROOMS AVAILABLE TITLE -->
             <div class="row display-rooms">
               <div class="col-md-12">
-                <h3 class="room-header" ng-show="data.rooms">Ready to join:</h3>
+                <h3 class="room-names" ng-show="data.rooms">Rooms ready to join:</h3>
               </div>
             </div>
 

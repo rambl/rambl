@@ -86,7 +86,7 @@
 .main_room_container {
   position: absolute;
   width: 60%;
-  background: #57CBE5;
+  background: #5FB5C9;
   height: 100%;
 
   font-family: "arial","helvetica", sans-serif;
@@ -95,7 +95,10 @@
 }
 
 .room-header {
+  margin-top: 0px !important;
   margin-bottom: 10px !important;
+  border-bottom: 2px solid #0d747c;
+  padding-top: 40px;
 }
 
 #arrow-up {
@@ -126,6 +129,7 @@
 
 #partner-video-wrapper {
   text-align: center;
+  padding-top: 40px;
 }
 
 /*#parner-name-format {
@@ -153,9 +157,13 @@
 #note-pad {
   margin-top: 7px;
   width: 325px;
-  resize:vertical;
+  height: 450px;
+  resize: none;
+  padding: 25px;
 }
 
 #self-container-wrap {
   margin-right: 20px;
+  position: fixed;
+  top: 60px;
 }
