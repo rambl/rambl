@@ -20,14 +20,14 @@
     </style> -->
 
     <!--  LOBBY TITLE -->
-    <div class="row">
+    <!-- <div class="row">
       <div class="page-header">
         <h1 class="text-center">Lobby</h1>
       </div>
-    </div>
+    </div> -->
 
       <!-- ROOMS COLLECTION -->
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-12">
           <h3>Rooms:</h3>
           <ul class="list-group">
@@ -36,38 +36,78 @@
             </li>
           </ul>
         </div>
-      </div>
+      </div> -->
     <!-- </div> -->
     <!-- <br /> -->
 
       <div class="row">
         <div class="lobby-present col-md-offset-3 col-md-6">
 
+          <!-- ROOMS COLLECTION -->
+          <div class="row header-row">
+            <div class="page-header">
+              <h1 class="text-center">Welcome to Rambl</h1>
+            </div>
+          </div>
+          <div class="page-body">
+          <!-- <div class="row">
+            <div class="col-md-12">
+              <h3>Rooms:</h3>
+              <ul class="list-group">
+                <li class="list-group-item" ng-repeat="room in data.rooms | filter:roomFilter">
+                  <a href="" ng-click="setCurrentRoomAndNavigate(room)">{{room}}</a>
+                </li>
+              </ul>
+            </div>
+          </div> -->
+
           <!-- CREATE A ROOM -->
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-              <div class="input-group">
-                <form ng-submit="setCurrentRoomAndNavigate(newRoom)">
-                  <input type="text" class="form-control create-room" maxlength="45" placeholder="Create room" ng-model="newRoom" />
-                </form>
-                  <span class="input-group-btn">
-                    <button type="button" class="btn btn-primary" ng-click="setCurrentRoomAndNavigate(newRoom)">Submit</button>
-                  </span>
+            <div class="row create-room">
+              <div class="col-md-offset-2 col-md-8">
+                <div class="input-group">
+                  <form ng-submit="setCurrentRoomAndNavigate(newRoom)">
+                    <input type="text" class="form-control create-room" maxlength="45" placeholder="Create room" ng-model="newRoom" />
+                  </form>
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-primary" ng-click="setCurrentRoomAndNavigate(newRoom)">Submit</button>
+                    </span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- FILTER ROOMS -->
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8">
-                <input type="text" class="form-control" placeholder="Filter rooms" ng-model="roomFilter" />
+            <!-- FILTER ROOMS -->
+            <div class="row filter-rooms">
+              <div class="col-md-offset-2 col-md-8">
+                  <input type="text" class="form-control" placeholder="Filter rooms" ng-model="roomFilter" />
+              </div>
             </div>
+
+            <!-- ROOMS AVAILABLE TITLE -->
+            <div class="row display-rooms">
+              <div class="col-md-12">
+                <h3 class="room-header" ng-show="data.rooms">Ready to join:</h3>
+              </div>
+            </div>
+            
           </div>
-
         </div>
-      </div>
-    </div>
 
+        <!-- ROOM COLLECTION -->
+        <ul class="list-group col-md-offset-3 col-md-6">
+          <li class="open-rooms" ng-repeat="room in data.rooms | filter:roomFilter">
+            <a href="" ng-click="setCurrentRoomAndNavigate(room)">•   {{room}}</a>
+          </li>
+        </ul>
+
+      </div>
+
+
+      <!-- <div class="row"> -->
+        <!-- <div class="page-header">
+          <h1 class="text-center">Lobby</h1>
+        </div> -->
+      <!-- </div> -->
+    </div>
   </div>
 </div>
 
