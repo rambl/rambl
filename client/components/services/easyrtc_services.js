@@ -74,6 +74,7 @@ angular.module('ramblApp.easyRTCServices', [])
       var partnerNameContainer = $window.document.getElementById('partner_name_container');
 
       while (partnerNameContainer.hasChildNodes()) {
+          console.log("partnerNameContainer has hasChildNodes");
           partnerNameContainer.removeChild(partnerNameContainer.lastChild);
       }
 
@@ -93,6 +94,7 @@ angular.module('ramblApp.easyRTCServices', [])
     var interviewInit = function () {
       var initMediaSourceSuccess = function () {
         var selfVideo = $window.document.getElementById('self');
+        console.log("^^^^^^^^^^^^^^^^^^selfVideo", selfVideo);
         $window.easyrtc.setVideoObjectSrc(selfVideo, $window.easyrtc.getLocalStream());
 
         // this is critical to the application's functioning, roomListener gets called when
