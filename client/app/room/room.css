@@ -70,7 +70,8 @@
 
 
 #distant-background {
-  background: #006796;
+  /*background: #006796;*/
+  background: red;
   position: fixed;
 
   background-size: 100%;
@@ -163,7 +164,35 @@
 }
 
 #self-container-wrap {
+  position: relative;
   margin-right: 20px;
   position: fixed;
   top: 60px;
+}
+
+.bigVideo {
+  position: relative;
+  border-style: solid;
+  width: 780px;
+  height: 470px;
+}
+
+.smallVideo {
+  position: absolute;
+  border-style: solid;
+  width: 200px;
+  height: 150px;
+  top: 50px;
+  left: 550px;
+}
+
+.note {
+  /*position: absolute;*/
+  /*font-family: "Cabin",Arial,sans-serif;*/
+  border-style: solid;
+  margin-left: 10px;
+  width: 370px;
+  height: 470px;
+  /*top: 50px;
+  left: 550px;*/
 }

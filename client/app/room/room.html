@@ -1,9 +1,39 @@
 <div ng-include="'/components/navbar/navbar.html'" ng-controller="navbarController"></div>
 
 
-<div id="distant-background">
+<div id="distant-background ">
+
+<div class="home container">
+
+  <header class="row hero-unit">
+    <!-- <div class="col-md-12"> -->
+      <h1>Welcome to Xianhui's Room</h1>
+      <div class="col-md-8">
+      	<div class="bigVideo">
+      		<video id="other" width="600" height="400"></video>
+      	</div>
+      	<div class="smallVideo">
+      		<video id="self" width="150" height="100" muted="muted" volume="0"></video>
+      	</div>
+
+      </div>
+      <div class="col-md-4">
+      	  <textarea class="note" placeholder="Make notes!"></textarea>
+      </div>
+    <!-- </div> -->
+  </header>
 
 
+  <section class="row sub-section">
+    <div class="col-md-12">
+      <h2>Practice Makes Perfect</h2>
+      <p>Rambl is an online community for improving technical interview skills.</p>
+      <p>Rambl enables face-to-face video chat practice interviews over the web.</p>
+      <p>Real interviewers will guide you through practice interviews so you can master your skills.</p>
+      <a href="#/signup" class="btn btn-primary btn-lg">Sign Up</a>
+    </div>
+  </section>
+<!-- 
 
 
 <div class="row">
@@ -43,7 +73,7 @@
           </div>
         </div>
 
-		    <!-- <div class="questions_container">
+		    <div class="questions_container">
 		      <button class="questions_button btn btn-primary" ng-show="showQuestions"
 
 		        ng-click="showQuestions = !showQuestions">Show Questions</button>
@@ -54,7 +84,7 @@
 		      <ul class="list-group questions" ng-show="showQuestions">
 		        <li class="list-group-item" ng-repeat="question in data.questions">{{question}}</li>
 		      </ul>
-		    </div> -->
+		    </div>
 
 
         <div class="row">
@@ -69,6 +99,5 @@
   	  </div>
     </div>
 
-  </div> <!-- end main_room_container -->
-
+  </div>  -->
 </div>
