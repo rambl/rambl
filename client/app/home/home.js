@@ -2,7 +2,6 @@ angular.module('ramblApp.home', [])
 
 .controller('homeController', ['$scope', '$window', '$location', 'Auth', 'EasyRTC',
   function ($scope, $window, $location, Auth, EasyRTC) {
-
     $scope.invalidAccountInfo = false;
 
     // if user has userName and token, redirect to lobby, else check if they're coming from

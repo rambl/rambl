@@ -5,7 +5,7 @@ var secret = '8n24hEyJo7jYCEi';
 
 module.exports = {
   login: function(req, res, next) {
-    //console.log('userController login');
+    console.log('USERCONTROLLOER LOGIN');
     
     var email = req.body.email;
     var password = req.body.password;
@@ -27,7 +27,6 @@ module.exports = {
               userName: user.name,
               email: user.email
             };
-
             res.json(userObj);
           } else {
             console.log('Password authentication failed.');
