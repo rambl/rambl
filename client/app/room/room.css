@@ -227,6 +227,9 @@
   left: 550px;*/
 }
 
+textarea {
+  border: none;
+}
 h2 {
   color: #911821 !important;
 }
