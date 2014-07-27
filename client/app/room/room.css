@@ -1,12 +1,18 @@
 /* room view styles */
 
 #self-container {
-  width: 149px;
+/*  width: 149px;
   height: 109px;
 
   background: #006796;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 15px;*/
+  position: absolute;
+  border-style: solid;
+  width: 200px;
+  height: 150px;
+  top: 25px;
+  left: 550px;
   /*margin-right: 20px;*/
   /*position: absolute;*/
 }
@@ -15,9 +21,10 @@
   /*position: absolute;
   left: 0px;
   display: inline;*/
-  margin: 0 auto;
-  padding-top: 8px;
-  /*width: Auto;*/
+  /*margin: 0 auto;*/
+  /*padding-top: 8px;*/
+  width: 200px ;
+  height: 150px;
 }
 
 #other {

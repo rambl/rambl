@@ -1,29 +1,43 @@
 <div ng-include="'/components/navbar/navbar.html'" ng-controller="navbarController"></div>
 
 
-<!-- <div id="distant-background "> -->
+<div id="distant-background ">
 
-<!-- <div class="home container">
+<div class="home container">
 
   <header class="row hero-unit">
-      <h1>Welcome to Xianhui's Room</h1>
-      <div class="col-md-8">
-      	<div class="bigVideo">
-      		<video id="other" width="600" height="400"></video>
-      		<div id="partner_name_container"></div>
-      	</div>
-      	<div class="smallVideo" id="self">
-      		<video id="self" width="150" height="100" muted="muted" volume="0"></video>
-      	</div>
+    <h1>Welcome to Xianhui's Room</h1>
 
+      <!--video part -->
+    <div class="col-md-8">
+    	<div class="bigVideo">
+
+        <div id="partner-video-wrapper">
+            <video id="other" width="600" height="400"></video>
+            <div id="partner_name_container"></div>
+        </div>
+<!--       		<video id="other" width="600" height="400"></video>
+    		<div id="partner_name_container"></div> -->
+    	</div>
+
+      <!-- small video -->
+    	<div class="smallVideo" id="self-container">
+        <!-- <div id="self-container-wrap"> -->
+          <!-- <div id="self-container"> -->
+             <video id="self" width="150" height="100" muted="muted" volume="0"></video>
+          <!-- </div> -->
+        <!-- </div> -->
+        <!-- <video width="150" height="100" muted="muted" volume="0"></video> -->
       </div>
-      <div class="col-md-4">
-      	  <textarea class="note" placeholder="Make notes!"></textarea>
-      </div>
+
+    </div>
+
+    <!-- note part -->
+    <div class="col-md-4">
+        <textarea class="note" placeholder="Make notes!"></textarea>
+    </div>
   </header>
-
-
-  <section class="row sub-section">
+  <!-- <section class="row sub-section">
     <div class="col-md-12">
       <h2>Practice Makes Perfect</h2>
       <p>Rambl is an online community for improving technical interview skills.</p>
@@ -31,7 +45,7 @@
       <p>Real interviewers will guide you through practice interviews so you can master your skills.</p>
       <a href="#/signup" class="btn btn-primary btn-lg">Sign Up</a>
     </div>
-  </section> -->
+  </section>
 
 
 
@@ -71,7 +85,7 @@
     	       <video id="self" width="150" height="100" muted="muted" volume="0"></video>
           </div>
         </div>
-
+ -->
 		    <!-- <div class="questions_container">
 		      <button class="questions_button btn btn-primary" ng-show="showQuestions"
 		        ng-click="showQuestions = !showQuestions">Show Questions</button>
@@ -85,7 +99,7 @@
 		    </div> -->
 
 
-        <div class="row">
+<!--         <div class="row">
           <div class="col-md-12">
             <div id="partner-video-wrapper">
         	    <video id="other" width="600" height="400"></video>
@@ -97,6 +111,6 @@
   	  </div>
     </div>
 
-  </div> <!-- end main_room_container -->
+  </div>  --><!-- end main_room_container -->
 
-<!-- </div> -->
+</div>
