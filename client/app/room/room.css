@@ -1,40 +1,27 @@
 /* room view styles */
 
-#self-container {
-/*  width: 149px;
-  height: 109px;
+textarea {
+  border: none;
+}
+h2 {
+  color: #911821 !important;
+}
 
-  background: #006796;
-  text-align: center;
-  margin-bottom: 15px;*/
+#self-container {
   background: lightgray;
   position: absolute;
-  /*border-style: solid;*/
   width: 200px;
   height: 150px;
   top: 50px;
   left: 550px;
-  /*margin-right: 20px;*/
-  /*position: absolute;*/
 }
 
 #self {
-  /*position: absolute;
-  left: 0px;
-  display: inline;*/
-  /*margin: 0 auto;*/
-  /*padding-top: 8px;*/
   width: 200px ;
   height: 150px;
 }
 
 #other {
-  /*display: block;*/
-  /*margin: 0 auto;*/
-
-  /*width:30%;*/
-  /*display: inline-block;*/
-  /*margin: auto auto;*/
   position: absolute;
   top: 30px;
   width: 780px ;
@@ -88,19 +75,14 @@
   color: #3f2c2d !important;
 }
 
-
-
 #distant-background {
-  /*background: #006796;*/
   background: red;
   position: fixed;
-
   background-size: 100%;
   top: 50px !important;
   left: 0px;
   width: 100%;
   height: 100%;
-
   font-family: "arial","helvetica", sans-serif;
   font-size: 20px;
 }
@@ -110,7 +92,6 @@
   width: 60%;
   background: #5FB5C9;
   height: 100%;
-
   font-family: "arial","helvetica", sans-serif;
   font-size: 20px;
   text-align: center;
@@ -171,7 +152,6 @@
   position: absolute;
   margin-top: 120px !important;
   width: 18em;
-  /*right: 45px;*/
   color: white;
   background-color: #9E1F63;
   padding-left: 0.75em;
@@ -193,43 +173,14 @@
   position: relative;
   margin-right: 0px;
   position: fixed;
-  /*top: 80px;*/
 }
-
-/*.bigVideo {
-  position: relative;
-  border-style: solid;
-  width: 780px;
-  height: 470px;
-}
-
-.smallVideo {
-  position: absolute;
-  border-style: solid;
-  width: 200px;
-  height: 150px;
-  top: 50px;
-  left: 550px;
-}*/
 
 .note {
-  /*position: absolute;*/
   font-family: "Cabin",Arial,sans-serif;
-  /*border-style: solid;*/
-  /*background: #3f2c2d;*/
   background: lightgray;
   font-size:150%;
   color: #3f2c2d;
   margin-left: 10px;
   width: 370px;
   height: 620px;
-  /*top: 50px;
-  left: 550px;*/
-}
-
-textarea {
-  border: none;
-}
-h2 {
-  color: #911821 !important;
 }
